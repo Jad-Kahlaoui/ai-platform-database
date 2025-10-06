@@ -2,7 +2,7 @@
 
 ## Système d’IA générative (D1)
 
-###Membres : 
+### Membres : 
 * Kahlaoui Jad 
 * Lepage Enora
 * Masson Adrien
