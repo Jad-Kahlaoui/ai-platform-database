@@ -136,6 +136,10 @@ EVALUATION EST une classe d'association de la relation entre USERS et RESULTAT
 * Des HISTORIQUE\_UTILISATION sont associe a 1 MODELE
 ** Le sujet veut “déterminer les modèles les plus fréquemment utilisés au cours des derniers mois”
 
+
+-------------------------------------------------
+
+
 * USERS (1) — (0..N) EVALUATION
 * RESULTAT (1) — (0..N) EVALUATION
 * USERS (1) — (0..N) HISTORIQUE_UTILISATION
