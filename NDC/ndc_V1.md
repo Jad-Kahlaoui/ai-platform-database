@@ -132,9 +132,11 @@ EVALUATION EST une classe d'association de la relation entre USERS et RESULTAT
 * Un USERS collabore avec Un USERS (classe d'association) (Exactement 2 USERS par collaboration) 
 * Une ou plusieurs collaboration peuvent etre associé à 1 MODELE   
 * Un USERS génere 0 ou plusieurs RESULTAT
- ** Le sujet demande d’identifier “les utilisateurs les plus actifs, ceux qui ont généré le plus de contenu”
-* Des HISTORIQUE\_UTILISATION sont associe a 1 MODELE
-** Le sujet veut “déterminer les modèles les plus fréquemment utilisés au cours des derniers mois”
+* Des HISTORIQUE\_UTILISATION sont associe a 1 MODELE  
+* EVAUATION ET COLLABORATION sont des classes d'association   
+* METADONNEE est une composition  
+* LIMITEIMAGE, LIMITETEXTE, LIMITEVIDEO sont des classes filles de MODELE  
+* PREMIUM est une classe fille de USERS  
 
 
 -------------------------------------------------
