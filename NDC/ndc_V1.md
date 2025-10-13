@@ -8,7 +8,7 @@
 | email | texte | Adresse électronique unique | unique, non nul , clé candidate|
 | motDePasse | texte | Mot de passe chiffré de connexion | non nul |
 | dateInscription | date | Date d’inscription au service | non nul |
-| typeUtilisateur | enumération(régulier,premium) | Catégorie d’abonnement | non nul |
+| typeUtilisateur | enumération(régulier,premium) |  | non nul |
 
 **Premium**
 
@@ -127,20 +127,21 @@ Des HISTORIQUE\_UTILISATION * sont associé a 1 UTILISATEUR
 Un ou Plusieurs Donnee d'entrainement 1..* entraine Un ou Plusieurs MODELE 1...*
 Un MODELE 1 produit * RESULTAT
 Une ou Plusieurs metadonnee 1..* décrit 1 RESULTAT
-1 RESULTAT est évalue par * EVALUATION
-2 UTILISATEUR collaborent sur 1 COLLABORATION (Classe d'association)
-(Classe d'association) COLLABORATION * utilise 1 MODELE
+1 RESULTAT est évalue par * EVALUATION (classe d'association)
+* USERS collabore avec * USERS (classe d'association)
+Une collaboration 1 est associé à 1 MODELE 
+
+
 
 **Contraintes générales**
 
-1. **Intégrité référentielle** : toutes les clés étrangères doivent pointer vers des entités existantes.  
-2. **Intégrité de domaine** :  
-   * note ∈ \[0,5\]  
-   * typeUtilisateur ∈ {régulier, premium}  
-   * typeModele ∈ {texte, image, vidéo}  
-3. **Intégrité sémantique** :  
-   * un utilisateur régulier ne peut pas avoir de qualiteGeneration ni horsLigneAutorise.  
-   * dateFin \> dateDebut dans Collaboration.
+-typeUtilisateur de USERS est un énum (régulier,premium)
+-quantiteGeneration et horsLigneAutorise de PREMIUM dépendent de typeUtilisateur de USERS
+-typeModele de USERS est un énum (texte, image, video)
+-typeDonnee de DONNEEENTRAINEMENT dépend de typeModele de MODELE
+-dateFin \> dateDebut dans Collaboration.
+-dans collaboration qui est une classe d'association de la relation USERS vers USERS il faut que idUtilisateurA ≠ idUtilisateurB  
+-note de EVALUATION est compris entre 0 et 5 
 
 
 
