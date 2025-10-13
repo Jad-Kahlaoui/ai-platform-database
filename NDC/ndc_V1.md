@@ -123,29 +123,29 @@ EVALUATION EST une classe d'association de la relation entre USERS et RESULTAT
 **RELATION**
 
 
-** Un USERS  évalue EVALUATION  
-** Des HISTORIQUE\_UTILISATION  sont associé a USERS   
-** Un ou Plusieurs Donnee d'entrainement entraine Un ou Plusieurs MODELE   
-** Un MODELE produit RESULTAT  
-** Une ou Plusieurs metadonnee décrit 1 RESULTAT  
-** 1 RESULTAT est évalue par 0 ou plusieurs EVALUATION (classe d'association)  
-** Des USERS collabore avec Des USERS (classe d'association) (Exactement 2 USERS par collaboration) 
-** Une ou plusieurs collaboration peuvent etre associé à 1 MODELE   
-** Un USERS génere 0 ou plusieurs RESULTAT
- * Le sujet demande d’identifier “les utilisateurs les plus actifs, ceux qui ont généré le plus de contenu”
-** Des HISTORIQUE\_UTILISATION sont associe a 1 MODELE
-* Le sujet veut “déterminer les modèles les plus fréquemment utilisés au cours des derniers mois”
+* Un USERS  évalue EVALUATION  
+* Des HISTORIQUE\_UTILISATION  sont associé a USERS   
+* Un ou Plusieurs Donnee d'entrainement entraine Un ou Plusieurs MODELE   
+* Un MODELE produit RESULTAT  
+* Une ou Plusieurs metadonnee décrit 1 RESULTAT  
+* 1 RESULTAT est évalue par 0 ou plusieurs EVALUATION (classe d'association)  
+* Des USERS collabore avec Des USERS (classe d'association) (Exactement 2 USERS par collaboration) 
+* Une ou plusieurs collaboration peuvent etre associé à 1 MODELE   
+* Un USERS génere 0 ou plusieurs RESULTAT
+ ** Le sujet demande d’identifier “les utilisateurs les plus actifs, ceux qui ont généré le plus de contenu”
+* Des HISTORIQUE\_UTILISATION sont associe a 1 MODELE
+** Le sujet veut “déterminer les modèles les plus fréquemment utilisés au cours des derniers mois”
 
-USERS (1) — (0..N) EVALUATION
-RESULTAT (1) — (0..N) EVALUATION
-USERS (1) — (0..N) HISTORIQUE_UTILISATION
-MODELE (1) — (0..N) HISTORIQUE_UTILISATION
-DONNEE_ENTRAINEMENT (0..N) — (0..N) MODELE 
-MODELE (1) — (0..N) RESULTAT
-RESULTAT (1) — (1..N) METADONNEE
-USERS (0..N) — (0..N) USERS via COLLABORATION (exactement 2 participants par collaboration)
-MODELE (1) — (0..N) COLLABORATION
-USERS (1) — (0..N) RESULTAT
+* USERS (1) — (0..N) EVALUATION
+* RESULTAT (1) — (0..N) EVALUATION
+* USERS (1) — (0..N) HISTORIQUE_UTILISATION
+* MODELE (1) — (0..N) HISTORIQUE_UTILISATION
+* DONNEE_ENTRAINEMENT (0..N) — (0..N) MODELE 
+* MODELE (1) — (0..N) RESULTAT
+* RESULTAT (1) — (1..N) METADONNEE
+* USERS (0..N) — (0..N) USERS via COLLABORATION (exactement 2 participants par collaboration)
+* MODELE (1) — (0..N) COLLABORATION
+* USERS (1) — (0..N) RESULTAT
 
 
 
