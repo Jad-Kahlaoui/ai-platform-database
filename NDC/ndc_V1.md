@@ -129,7 +129,7 @@ EVALUATION EST une classe d'association de la relation entre USERS et RESULTAT
 * Un MODELE produit RESULTAT  
 * Une ou Plusieurs metadonnee décrit 1 RESULTAT  
 * 1 RESULTAT est évalue par 0 ou plusieurs EVALUATION (classe d'association)  
-* Des USERS collabore avec Des USERS (classe d'association) (Exactement 2 USERS par collaboration) 
+* Un USERS collabore avec Un USERS (classe d'association) (Exactement 2 USERS par collaboration) 
 * Une ou plusieurs collaboration peuvent etre associé à 1 MODELE   
 * Un USERS génere 0 ou plusieurs RESULTAT
  ** Le sujet demande d’identifier “les utilisateurs les plus actifs, ceux qui ont généré le plus de contenu”
@@ -147,7 +147,7 @@ EVALUATION EST une classe d'association de la relation entre USERS et RESULTAT
 * DONNEE_ENTRAINEMENT (0..N) — (0..N) MODELE 
 * MODELE (1) — (0..N) RESULTAT
 * RESULTAT (1) — (1..N) METADONNEE
-* USERS (0..N) — (0..N) USERS via COLLABORATION (exactement 2 participants par collaboration)
+* USERS (1) — (1) USERS via COLLABORATION (exactement 2 participants par collaboration)
 * MODELE (1) — (0..N) COLLABORATION
 * USERS (1) — (0..N) RESULTAT
 
