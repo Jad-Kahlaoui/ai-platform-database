@@ -122,26 +122,26 @@ EVALUATION EST une classe d'association de la relation entre USERS et RESULTAT
 
 **RELATION**
 
-Un UTILISATEUR 1 évalue  * EVALUATION
-Des HISTORIQUE\_UTILISATION * sont associé a 1 UTILISATEUR
-Un ou Plusieurs Donnee d'entrainement 1..* entraine Un ou Plusieurs MODELE 1...*
-Un MODELE 1 produit * RESULTAT
-Une ou Plusieurs metadonnee 1..* décrit 1 RESULTAT
-1 RESULTAT est évalue par * EVALUATION (classe d'association)
-* USERS collabore avec * USERS (classe d'association)
-Une collaboration 1 est associé à 1 MODELE 
+**Un UTILISATEUR 1 évalue  * EVALUATION
+**Des HISTORIQUE\_UTILISATION * sont associé a 1 UTILISATEUR
+**Un ou Plusieurs Donnee d'entrainement 1..* entraine Un ou Plusieurs MODELE 1...*
+**Un MODELE 1 produit * RESULTAT
+*Une ou Plusieurs metadonnee 1..* décrit 1 RESULTAT
+**1 RESULTAT est évalue par * EVALUATION (classe d'association)
+** * USERS collabore avec * USERS (classe d'association)
+**Une collaboration 1 est associé à 1 MODELE 
 
 
 
 **Contraintes générales**
 
--typeUtilisateur de USERS est un énum (régulier,premium)
--quantiteGeneration et horsLigneAutorise de PREMIUM dépendent de typeUtilisateur de USERS
--typeModele de USERS est un énum (texte, image, video)
--typeDonnee de DONNEEENTRAINEMENT dépend de typeModele de MODELE
--dateFin \> dateDebut dans Collaboration.
--dans collaboration qui est une classe d'association de la relation USERS vers USERS il faut que idUtilisateurA ≠ idUtilisateurB  
--note de EVALUATION est compris entre 0 et 5 
+**-typeUtilisateur de USERS est un énum (régulier,premium)
+**-quantiteGeneration et horsLigneAutorise de PREMIUM dépendent de typeUtilisateur de USERS
+**-typeModele de USERS est un énum (texte, image, video)
+**-typeDonnee de DONNEEENTRAINEMENT dépend de typeModele de MODELE
+**-dateFin \> dateDebut dans Collaboration.
+**-dans collaboration qui est une classe d'association de la relation USERS vers USERS il faut que idUtilisateurA ≠ idUtilisateurB  
+**-note de EVALUATION est compris entre 0 et 5 
 
 
 
