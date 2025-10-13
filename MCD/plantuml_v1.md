@@ -1,11 +1,14 @@
 @startuml
 title Empty Diagram - NF18
 @startuml
-' Optionnel : quelques réglages de lisibilité
 skinparam linetype ortho
 hide methods
 hide stereotypes
+
+
+
 ' ===================== ENTITÉS =====================
+
 class USERS {
 
 email : TEXT {PK}
@@ -96,7 +99,10 @@ class HISTORIQUE_UTILISATION {
 typeInteraction : TEXT
 date : DATE
 }
+
+
 ' ===================== ASSOCIATIONS / CARDINALITÉS =====================
+
 HISTORIQUE_UTILISATION  "*" -- "1" USERS : "sont associé"
 DONNEE_ENTRAINEMENT  "*" -- "*" MODELE : "entraine"
 MODELE  "1" -- "*" RESULTAT : "produit"
