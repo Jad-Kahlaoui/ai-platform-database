@@ -14,11 +14,13 @@
 
 | Nom | Type | Description | Contraintes |
 | ----- | ----- | ----- | ----- |
-| qualiteGeneration| texte | Qualité de génération | présent uniquement si premium |
+| quantiteGeneration| texte | Quantite de génération |  |
 | horsLigneAutorise | booléen | Droit d’utilisation hors ligne | présent uniquement si premium |
 
+
 Premium est un héritage de Users
-Plusieurs catégorie de  
+quantiteGeneration depend de typeUtilisateur
+Plusieurs catégorie de premium exprimée par 0 pour un niveau regulier et 1 pour niveau premium
 
 
 **MODELE**
@@ -117,6 +119,28 @@ EVALUATION EST une classe d'association de la relation entre USERS et RESULTAT
 | ----- | ----- | ----- | ----- |
 | typeInteraction | texte | | non nul |
 | date | date |  | non nul |
+
+**RELATION**
+
+Un UTILISATEUR 1 évalue  * EVALUATION
+Des HISTORIQUE\_UTILISATION * sont associé a 1 UTILISATEUR
+Un ou Plusieurs Donnee d'entrainement 1..* entraine Un ou Plusieurs MODELE 1...*
+Un MODELE 1 produit * RESULTAT
+Une ou Plusieurs metadonnee 1..* décrit 1 RESULTAT
+1 RESULTAT est évalue par * EVALUATION
+2 UTILISATEUR collaborent sur 1 COLLABORATION (Classe d'association)
+(Classe d'association) COLLABORATION * utilise 1 MODELE
+
+**Contraintes générales**
+
+1. **Intégrité référentielle** : toutes les clés étrangères doivent pointer vers des entités existantes.  
+2. **Intégrité de domaine** :  
+   * note ∈ \[0,5\]  
+   * typeUtilisateur ∈ {régulier, premium}  
+   * typeModele ∈ {texte, image, vidéo}  
+3. **Intégrité sémantique** :  
+   * un utilisateur régulier ne peut pas avoir de qualiteGeneration ni horsLigneAutorise.  
+   * dateFin \> dateDebut dans Collaboration.
 
 
 
