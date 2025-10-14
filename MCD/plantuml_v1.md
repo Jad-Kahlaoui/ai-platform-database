@@ -91,7 +91,7 @@ DONNEE_ENTRAINEMENT  "*" -- "*" MODELE : "entraine"
 MODELE  "1" -- "*" RESULTAT : "produit"
 METADONNEE "1..N" -- "1" RESULTAT : "décrit"
 RESULTAT  "1" -- "*" EVALUATION : "est évalué"
-USERS "2" -- "*" COLLABORATION : "collaborent sur"
+USERS "2" .. "*" COLLABORATION : "collaborent sur"
 COLLABORATION }o--|| MODELE      : "utilise"
 USERS "1" -- "*" RESULTAT
 (USERS, RESULTAT) .. EVALUATION
