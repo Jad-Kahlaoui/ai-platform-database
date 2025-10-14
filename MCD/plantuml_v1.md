@@ -18,11 +18,6 @@ motDePasse : TEXT
 dateInscription : DATE
 typeUtilisateur : ENUM("regulier","premium")
 }
-note right of USERS
-typeUtilisateur: regulier | premium
-Les champs "qualiteGeneration" et "horsLigneAutorise"
-ne concernent que les comptes premium.
-end note
 
 class PREMIUM {
 qualiteGeneration : TEXT
@@ -36,10 +31,7 @@ description : TEXT
 dateCreation : DATE
 typeModele : ENUM("texte","image","video")
 }
-note right of MODELE
-limiteTechnique (JSONB) ex:
-{ max_resolution, max_duree_sec, max_longueur }
-end note
+
 
 class LIMITEIMAGE {
 resolution : TEXT
@@ -67,24 +59,17 @@ class METADONNEE {
 
 cle : TEXT {PK}
 --
-valeur : TEXT
+valeur : TEXT {PK}
 }
-note right of METADONNEE
-PK composite: (idGeneration, cleMeta)
-idGeneration est aussi une FK vers GENERATION.
-end note
+
 
 class EVALUATION {
 
 note : INT {PK}
-commentaire : TEXT
-date : DATE
+commentaire : TEXT {PK}
+date : DATE {PK}
 }
-note right of EVALUATION
-Contrôle d'unicité logique:
-UNIQUE(idGeneration, idUtilisateur)
-(endroit exact à implémenter au niveau BDD)
-end note
+
 
 class COLLABORATION {
 dateDebut : DATE
@@ -92,12 +77,10 @@ dateFin : DATE
 }
 note right of COLLABORATION
 CHECK utilisateurs_distincts: A <> B
-CHECK borne_dates: dateFin IS NULL OR dateFin > dateDebut
-(endroit exact à implémenter au niveau BDD)
 end note
 class HISTORIQUE_UTILISATION {
-typeInteraction : TEXT
-date : DATE
+typeInteraction : TEXT 
+date : DATE {PK}
 }
 
 
@@ -120,3 +103,4 @@ USERS "1" -- "*" EVALUATION
 MODELE "1"-- "*" HISTORIQUE_UTILISATION
 
 @enduml
+
