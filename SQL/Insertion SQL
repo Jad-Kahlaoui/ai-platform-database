@@ -1,0 +1,66 @@
+INSERT INTO Utilisateur (email, nom, motDePasse, dateInscription, TypeUtilisateur, qualiteGeneration, horsLigneAutorise) VALUES
+('alice@gmail.com', 'Alice Dupont', 'mdpAlice123', '2024-09-10', 'premium', 'haute', TRUE),
+('bob@gmail.com', 'Bob Martin', 'mdpBob321', '2024-10-05', 'normal', 'moyenne', FALSE),
+('charlie@gmail.com', 'Charlie Leblanc', 'mdpCh@rlie', '2025-01-12', 'premium', 'haute', TRUE),
+('diane@gmail.com', 'Diane Petit', 'mdpDiane456', '2025-02-01', 'normal', 'moyenne', FALSE),
+('eva@gmail.com', 'Eva Moreau', 'mdpEva789', '2025-03-15', 'premium', 'haute', TRUE);
+
+INSERT INTO Modele (nom, description, dateCreation, TypeModele, longueurMax, resolution, duree) VALUES
+('GPT-TextPro', 'Modèle de génération de texte avancé', '2024-08-20', 'texte', '8000 tokens', NULL, NULL),
+('VisionX', 'Modèle d’analyse d’image haute résolution', '2024-09-01', 'image', NULL, '4K', NULL),
+('VidGen3', 'Générateur de vidéo synthétique', '2025-01-05', 'video', NULL, NULL, '2 min'),
+('MiniGPT', 'Petit modèle textuel rapide', '2024-10-12', 'texte', '2000 tokens', NULL, NULL),
+('PhotoAI', 'Modèle pour retouche photo automatique', '2024-11-10', 'image', NULL, '1080p', NULL);
+
+INSERT INTO DonneeEntrainement (contenu, typeDonnee, dateAjout) VALUES
+('Corpus Wikipedia FR', 'texte', '2024-09-01'),
+('Jeux de photos animalières', 'image', '2024-09-20'),
+('Clips de gestes humains', 'video', '2024-11-10'),
+('Données Reddit modérées', 'texte', '2024-12-01'),
+('Photos satellites', 'image', '2025-01-05'),
+('Séquences de conduite automobile', 'video', '2025-02-12');
+
+INSERT INTO EntrainementModele (contenu, nom_modele) VALUES
+('Corpus Wikipedia FR', 'GPT-TextPro'),
+('Données Reddit modérées', 'MiniGPT'),
+('Jeux de photos animalières', 'VisionX'),
+('Photos satellites', 'PhotoAI'),
+('Clips de gestes humains', 'VidGen3'),
+('Séquences de conduite automobile', 'VidGen3');
+
+INSERT INTO Resultat (email, nom, dateDebut) VALUES
+('alice@gmail.com', 'GPT-TextPro', '2025-03-01'),
+('bob@gmail.com', 'VisionX', '2025-03-10'),
+('charlie@gmail.com', 'VidGen3', '2025-03-20'),
+('diane@gmail.com', 'MiniGPT', '2025-04-01'),
+('eva@gmail.com', 'PhotoAI', '2025-04-10');
+
+INSERT INTO MetaDonnee (idResultat, cle, valeur) VALUES
+(1, 'temps_execution', '120s'),
+(1, 'precision', '0.92'),
+(2, 'resolution_testee', '4K'),
+(3, 'duree_video', '2 min'),
+(4, 'longueur_max', '2000 tokens'),
+(5, 'format_image', 'JPEG');
+
+INSERT INTO Evaluation (email, idResultat, date, note, commentaire) VALUES
+('bob@gmail.com', 1, '2025-03-05', 5, 'Excellent modèle de texte.'),
+('alice@gmail.com', 2, '2025-03-15', 4, 'Bonne qualité mais un peu lent.'),
+('charlie@gmail.com', 3, '2025-03-25', 3, 'Résultats moyens sur certaines vidéos.'),
+('diane@gmail.com', 4, '2025-04-03', 4, 'Rapide et précis.'),
+('eva@gmail.com', 5, '2025-04-12', 5, 'Images superbes !');
+
+INSERT INTO Collaboration (emailA, emailB, nom, dateDebut, dateFin) VALUES
+('alice@gmail.com', 'bob@gmail.com', 'GPT-TextPro', '2025-02-01', '2025-03-01'),
+('charlie@gmail.com', 'diane@gmail.com', 'VidGen3', '2025-03-01', '2025-03-25'),
+('bob@gmail.com', 'eva@gmail.com', 'VisionX', '2025-03-05', '2025-04-01'),
+('alice@gmail.com', 'charlie@gmail.com', 'MiniGPT', '2025-02-15', '2025-03-10');
+
+INSERT INTO HistoriqueUtilisation (email, nom, date, typeInteraction) VALUES
+('alice@gmail.com', 'GPT-TextPro', '2025-03-01', 'generation'),
+('bob@gmail.com', 'VisionX', '2025-03-10', 'consultation'),
+('charlie@gmail.com', 'VidGen3', '2025-03-20', 'entrainement'),
+('diane@gmail.com', 'MiniGPT', '2025-04-02', 'generation'),
+('eva@gmail.com', 'PhotoAI', '2025-04-11', 'evaluation'),
+('bob@gmail.com', 'VisionX', '2025-03-15', 'entrainement'),
+('alice@gmail.com', 'MiniGPT', '2025-03-05', 'consultation');
