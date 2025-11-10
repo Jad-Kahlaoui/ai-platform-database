@@ -16,13 +16,13 @@ INSERT INTO DonneeEntrainement (contenu, typeDonnee, dateAjout) VALUES
 ('Wikipedia', 'texte', '2024-09-01'),
 ('Photos animaux', 'image', '2024-09-20'),
 ('Clip Booba', 'video', '2024-11-10'),
-('Lettre d'amour', 'texte', '2024-12-01'),
+('Lettre d amour', 'texte', '2024-12-01'),
 ('Photos satellites', 'image', '2025-01-05'),
 ('Pub Porsche 911', 'video', '2025-02-12');
 
 INSERT INTO EntrainementModele (contenu, nom_modele) VALUES
 ('Wikipedia', 'GPT-TextPro'),
-('Lettre d'amour', 'MiniGPT'),
+('Lettre d amour', 'MiniGPT'),
 ('Photos animaux', 'VisionX'),
 ('Photos satellites', 'PhotoAI'),
 ('Clip Booba', 'VidGen3'),
