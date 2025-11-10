@@ -21,7 +21,7 @@ CHECK (qualiteGeneration IN ('moyenne', 'haute'))
 horsLigneAutorise ne peut être TRUE que si l’utilisateur est premium
 qualiteGeneration 'haute' que si Utilisateur est premium
 
-*Table Modele* : 
+Table Modele : 
 
  
 CHECK (TypeModele IN ('texte', 'image', 'video')),
