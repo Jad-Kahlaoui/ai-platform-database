@@ -79,7 +79,7 @@ CREATE TABLE Collaboration (
     PRIMARY KEY (emailA, emailB, nom),
     FOREIGN KEY (emailA) REFERENCES Utilisateur(email),
     FOREIGN KEY (emailB) REFERENCES Utilisateur(email),
-    FOREIGN KEY (nom) REFERENCES Modele(nom)
+    FOREIGN KEY (nom) REFERENCES Modele(nom),
     CHECK (emailA != emailB),
     CHECK (dateFin > dateDebut)
 );
