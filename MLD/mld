@@ -1,5 +1,5 @@
 Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
-Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, longueurMax: TEXT, resolution: TEXT, duree: TEXT)
+Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, TypeModele: TEXT ,longueurMax: TEXT, resolution: TEXT, duree: TEXT)
 DonneeEntrainement(#contenu: TEXT, typeDonnee: TEXT, dateAjout: DATE)
 EntrainementModele(#contenu => DonneeEntrainement, #nom => Modele)
 Resultat(#idResultat: INT, email => Utilisateur, nom => Modele, dateDebut: DATE)
@@ -21,16 +21,16 @@ qualiteGeneration 'haute' que si Utilisateur est premium
 *Table Modele* : 
 
  
-CHECK (typeDonnee IN ('texte', 'image', 'video')),
+CHECK (TypeModele IN ('texte', 'image', 'video')),
 
 
 CHECK (
 
-  if(typeDonnee = 'texte') (longueurMax IS NOT NULL AND resolution IS NULL AND duree IS NULL)
+  if(TypeModele = 'texte') (longueurMax IS NOT NULL AND resolution IS NULL AND duree IS NULL)
 
-  OR if(typeDonnee = 'image') (resolution IS NOT NULL AND longueurMax IS NULL AND duree IS NULL)
+  OR if(TypeModele = 'image') (resolution IS NOT NULL AND longueurMax IS NULL AND duree IS NULL)
   
-  OR if(typeDonnee = 'video') (duree IS NOT NULL AND longueurMax IS NULL AND resolution IS NULL)
+  OR if(TypeModele = 'video') (duree IS NOT NULL AND longueurMax IS NULL AND resolution IS NULL)
 )
 
 
