@@ -1,3 +1,6 @@
+# MLD
+
+
 Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
 Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, TypeModele: TEXT ,longueurMax: TEXT, resolution: TEXT, duree: TEXT)
 DonneeEntrainement(#contenu: TEXT, typeDonnee: TEXT, dateAjout: DATE)
