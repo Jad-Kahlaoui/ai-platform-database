@@ -48,7 +48,7 @@ INSERT INTO Evaluation (email, idResultat, date, note, commentaire) VALUES
 ('alice@gmail.com', 2, '2025-03-15', 4, 'Bonne qualité mais un peu lent.'),
 ('charlie@gmail.com', 3, '2025-03-25', 3, 'Résultats moyens sur certaines vidéos.'),
 ('diane@gmail.com', 4, '2025-04-03', 4, 'Rapide et précis.'),
-('eva@gmail.com', 5, '2025-04-12', 5, 'C'est beau !');
+('eva@gmail.com', 5, '2025-04-12', 5, 'C est beau !');
 
 INSERT INTO Collaboration (emailA, emailB, nom, dateDebut, dateFin) VALUES
 ('alice@gmail.com', 'bob@gmail.com', 'GPT-TextPro', '2025-02-01', '2025-03-01'),
