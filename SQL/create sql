@@ -19,7 +19,13 @@ CREATE TABLE Modele (
     TypeModele TEXT NOT NULL CHECK (TypeModele IN ('texte', 'image', 'video')),
     longueurMax TEXT,
     resolution TEXT,
-    duree TEXT
+    duree TEXT,
+
+     CHECK (
+        (typeModele = 'texte' AND longueurMax IS NOT NULL AND resolution IS NULL AND duree IS NULL)
+        OR (typeModele = 'image' AND resolution IS NOT NULL AND longueurMax IS NULL AND duree IS NULL)
+        OR (typeModele = 'video' AND duree IS NOT NULL AND longueurMax IS NULL AND resolution IS NULL)
+    )
 );
 
 -- Table DonneeEntrainement
