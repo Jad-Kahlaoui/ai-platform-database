@@ -6,27 +6,27 @@ INSERT INTO Utilisateur (email, nom, motDePasse, dateInscription, TypeUtilisateu
 ('eva@gmail.com', 'Eva Moreau', 'mdpEva789', '2025-03-15', 'premium', 'haute', TRUE);
 
 INSERT INTO Modele (nom, description, dateCreation, TypeModele, longueurMax, resolution, duree) VALUES
-('GPT-TextPro', 'Modèle de génération de texte avancé', '2024-08-20', 'texte', '8000 tokens', NULL, NULL),
-('VisionX', 'Modèle d’analyse d’image haute résolution', '2024-09-01', 'image', NULL, '4K', NULL),
-('VidGen3', 'Générateur de vidéo synthétique', '2025-01-05', 'video', NULL, NULL, '2 min'),
-('MiniGPT', 'Petit modèle textuel rapide', '2024-10-12', 'texte', '2000 tokens', NULL, NULL),
-('PhotoAI', 'Modèle pour retouche photo automatique', '2024-11-10', 'image', NULL, '1080p', NULL);
+('GPT-TextPro', 'Modèle de génération de texte avancé', '2024-08-20', 'texte', '8000', NULL, NULL),
+('VisionX', 'Modèle d’analyse d’image haute résolution', '2024-09-01', 'image', NULL, '2160', NULL),
+('VidGen3', 'Générateur de vidéo synthétique', '2025-01-05', 'video', NULL, NULL, '120'),
+('MiniGPT', 'Petit modèle textuel rapide', '2024-10-12', 'texte', '2000', NULL, NULL),
+('PhotoAI', 'Modèle pour retouche photo automatique', '2024-11-10', 'image', NULL, '1080', NULL);
 
 INSERT INTO DonneeEntrainement (contenu, typeDonnee, dateAjout) VALUES
-('Corpus Wikipedia FR', 'texte', '2024-09-01'),
-('Jeux de photos animalières', 'image', '2024-09-20'),
-('Clips de gestes humains', 'video', '2024-11-10'),
-('Données Reddit modérées', 'texte', '2024-12-01'),
+('Wikipedia', 'texte', '2024-09-01'),
+('Photos animaux', 'image', '2024-09-20'),
+('Clip Booba', 'video', '2024-11-10'),
+('Lettre d'amour', 'texte', '2024-12-01'),
 ('Photos satellites', 'image', '2025-01-05'),
-('Séquences de conduite automobile', 'video', '2025-02-12');
+('Pub Porsche 911', 'video', '2025-02-12');
 
 INSERT INTO EntrainementModele (contenu, nom_modele) VALUES
-('Corpus Wikipedia FR', 'GPT-TextPro'),
-('Données Reddit modérées', 'MiniGPT'),
-('Jeux de photos animalières', 'VisionX'),
+('Wikipedia', 'GPT-TextPro'),
+('Lettre d'amour', 'MiniGPT'),
+('Photos animaux', 'VisionX'),
 ('Photos satellites', 'PhotoAI'),
-('Clips de gestes humains', 'VidGen3'),
-('Séquences de conduite automobile', 'VidGen3');
+('Clip Booba', 'VidGen3'),
+('Pub Porsche 911', 'VidGen3');
 
 INSERT INTO Resultat (email, nom, dateDebut) VALUES
 ('alice@gmail.com', 'GPT-TextPro', '2025-03-01'),
@@ -36,19 +36,19 @@ INSERT INTO Resultat (email, nom, dateDebut) VALUES
 ('eva@gmail.com', 'PhotoAI', '2025-04-10');
 
 INSERT INTO MetaDonnee (idResultat, cle, valeur) VALUES
-(1, 'temps_execution', '120s'),
+(1, 'temps_execution', '120'),
 (1, 'precision', '0.92'),
-(2, 'resolution_testee', '4K'),
-(3, 'duree_video', '2 min'),
-(4, 'longueur_max', '2000 tokens'),
+(2, 'resolution_testee', '2160'),
+(3, 'duree_video', '120'),
+(4, 'longueur_max', '2000'),
 (5, 'format_image', 'JPEG');
 
 INSERT INTO Evaluation (email, idResultat, date, note, commentaire) VALUES
-('bob@gmail.com', 1, '2025-03-05', 5, 'Excellent modèle de texte.'),
+('bob@gmail.com', 1, '2025-03-05', 5, 'Contenu mensonger.'),
 ('alice@gmail.com', 2, '2025-03-15', 4, 'Bonne qualité mais un peu lent.'),
 ('charlie@gmail.com', 3, '2025-03-25', 3, 'Résultats moyens sur certaines vidéos.'),
 ('diane@gmail.com', 4, '2025-04-03', 4, 'Rapide et précis.'),
-('eva@gmail.com', 5, '2025-04-12', 5, 'Images superbes !');
+('eva@gmail.com', 5, '2025-04-12', 5, 'C'est beau !');
 
 INSERT INTO Collaboration (emailA, emailB, nom, dateDebut, dateFin) VALUES
 ('alice@gmail.com', 'bob@gmail.com', 'GPT-TextPro', '2025-02-01', '2025-03-01'),
