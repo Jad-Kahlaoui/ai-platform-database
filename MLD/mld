@@ -20,11 +20,25 @@ qualiteGeneration 'haute' que si Utilisateur est premium
 
 *Table Modele* : 
 
-Verification de ou Exclusif , soit l'un soit l'autre mais pas les 2 : XOR 
-CHECK (longueurMax IS NOT NULL XOR resolution IS NOT NULL XOR duree IS NOT NULL),
+ 
+CHECK (typeDonnee IN ('texte', 'image', 'video')),
+
+
+CHECK (
+
+  if(typeDonnee = 'texte') (longueurMax IS NOT NULL AND resolution IS NULL AND duree IS NULL)
+
+  OR if(typeDonnee = 'image') (resolution IS NOT NULL AND longueurMax IS NULL AND duree IS NULL)
+  
+  OR if(typeDonnee = 'video') (duree IS NOT NULL AND longueurMax IS NULL AND resolution IS NULL)
+)
+
+
+
 CHECK (dateCreation <= CURRENT_DATE)
 
 *Table DonneeEntrainement * :
+
 CHECK (dateAjout <= CURRENT_DATE)
 CHECK (typeDonnee IN ('texte', 'image', 'video')) 
 
