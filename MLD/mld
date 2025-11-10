@@ -1,6 +1,6 @@
 
 
-Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
+Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE,TypeUtilisateur: TEXT, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
 Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, TypeModele: TEXT ,longueurMax: TEXT, resolution: TEXT, duree: TEXT)
 DonneeEntrainement(#contenu: TEXT, typeDonnee: TEXT, dateAjout: DATE)
 EntrainementModele(#contenu => DonneeEntrainement, #nom => Modele)
@@ -18,8 +18,9 @@ Table Utilisateur :
 
 CHECK (dateInscription <= CURRENT_DATE),
 CHECK (qualiteGeneration IN ('moyenne', 'haute')) 
-horsLigneAutorise ne peut être TRUE que si l’utilisateur est premium
-qualiteGeneration 'haute' que si Utilisateur est premium
+CHECK (TypeUtilisateur IN ('normal', 'premium'))
+horsLigneAutorise ne peut être TRUE que si TypeUtilisateur est premium
+qualiteGeneration 'haute' que si TypeUtilisateur est premium
 
 Table Modele : 
 
