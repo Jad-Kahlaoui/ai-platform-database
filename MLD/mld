@@ -1,4 +1,3 @@
-# MLD
 
 
 Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
@@ -13,9 +12,10 @@ HistoriqueUtilisation(#email => Utilisateur, #nom => Modele, #date: DATE, typeIn
 
 
 
-** Contraintes Explicites  **
+ Contraintes Explicites  
 
-*Table Utilisateur :*
+Table Utilisateur :
+
 CHECK (dateInscription <= CURRENT_DATE),
 CHECK (qualiteGeneration IN ('moyenne', 'haute')) 
 horsLigneAutorise ne peut être TRUE que si l’utilisateur est premium
@@ -36,31 +36,31 @@ CHECK (
   OR if(TypeModele = 'video') (duree IS NOT NULL AND longueurMax IS NULL AND resolution IS NULL)
 )
 
-
-
 CHECK (dateCreation <= CURRENT_DATE)
 
-*Table DonneeEntrainement * :
+
+Table DonneeEntrainement :
 
 CHECK (dateAjout <= CURRENT_DATE)
 CHECK (typeDonnee IN ('texte', 'image', 'video')) 
 
-* Table Resultat *:
+ Table Resultat :
 
 CHECK (dateDebut <= CURRENT_DATE)
 
-*Table MetaDonnee* :
+Table MetaDonnee :
 
 Chaque clé doit être unique pour un même résultat.
 
 
-*Table Evaluation* :
+Table Evaluation :
 
 0 =< Evaluation.note <= 5
 CHECK (date <= CURRENT_DATE)
 Un utilisateur ne peut évaluer qu’un seul résultat donné une fois
 
-*Table Collaboration* : 
+Table Collaboration : 
+
 Collaboration.emailA =! Collaboration.emailB
 dateFin > dateDebut
 
