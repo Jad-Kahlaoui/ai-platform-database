@@ -10,4 +10,8 @@ HistoriqueUtilisation(#email => Utilisateur, #nom => Modele, #date: DATE, typeIn
 
 
 
-Héritage par classe mère pour USERS et Premium 
+Contraintes explicites
+
+0 =< Evaluation.note <= 5
+Collaboration.emailA =! Collaboration.emailB
+Collaboration.dateFin > Collaboration.dateDebut
