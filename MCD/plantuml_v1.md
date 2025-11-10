@@ -1,4 +1,3 @@
-```
 @startuml
 title Empty Diagram - NF18
 @startuml
@@ -17,7 +16,6 @@ email : TEXT {PK}
 nom : TEXT
 motDePasse : TEXT
 dateInscription : DATE
-typeUtilisateur : ENUM("regulier","premium")
 }
 
 class PREMIUM {
@@ -30,7 +28,6 @@ nom : TEXT {PK}
 --
 description : TEXT
 dateCreation : DATE
-typeModele : ENUM("texte","image","video")
 }
 
 
@@ -66,9 +63,9 @@ valeur : TEXT {PK}
 
 class EVALUATION {
 
-note : INT {PK}
-commentaire : TEXT {PK}
-date : DATE {PK}
+note : INT
+commentaire : TEXT 
+date : DATE 
 }
 
 
@@ -91,7 +88,6 @@ HISTORIQUE_UTILISATION  "*" -- "1" USERS : "sont associé"
 DONNEE_ENTRAINEMENT  "*" -- "*" MODELE : "entraine"
 MODELE  "1" -- "*" RESULTAT : "produit"
 METADONNEE "1..N" -- "1" RESULTAT : "décrit"
-RESULTAT  "1" -- "*" EVALUATION : "est évalué"
 USERS "2" .. "*" COLLABORATION : "collaborent sur"
 COLLABORATION }o--|| MODELE      : "utilise"
 USERS "1" -- "*" RESULTAT
@@ -100,8 +96,6 @@ LIMITETEXTE --|> MODELE
 LIMITEIMAGE --|> MODELE
 LIMITEVIDEO --|> MODELE
 PREMIUM --|> USERS
-USERS "1" -- "*" EVALUATION
 MODELE "1"-- "*" HISTORIQUE_UTILISATION
 
 @enduml
-```
