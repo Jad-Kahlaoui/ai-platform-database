@@ -17,9 +17,9 @@ CREATE TABLE Modele (
     description TEXT,
     dateCreation DATE NOT NULL CHECK (dateCreation <= CURRENT_DATE),
     TypeModele TEXT NOT NULL CHECK (TypeModele IN ('texte', 'image', 'video')),
-    longueurMax TEXT,
-    resolution TEXT,
-    duree TEXT,
+    longueurMax INT,
+    resolution INT,
+    duree INT,
 
      CHECK (
         (typeModele = 'texte' AND longueurMax IS NOT NULL AND resolution IS NULL AND duree IS NULL)
