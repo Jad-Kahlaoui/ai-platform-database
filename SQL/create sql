@@ -1,0 +1,91 @@
+-- Table Utilisateur
+CREATE TABLE Utilisateur (
+    email TEXT PRIMARY KEY,
+    nom TEXT NOT NULL,
+    motDePasse TEXT NOT NULL,
+    dateInscription DATE NOT NULL,
+    qualiteGeneration TEXT,
+    horsLigneAutorise BOOLEAN DEFAULT FALSE
+);
+
+-- Table Modele
+CREATE TABLE Modele (
+    nom TEXT PRIMARY KEY,
+    description TEXT,
+    dateCreation DATE NOT NULL,
+    longueurMax TEXT,
+    resolution TEXT,
+    duree TEXT
+);
+
+-- Table DonneeEntrainement
+CREATE TABLE DonneeEntrainement (
+    idDonnee INTEGER PRIMARY KEY ,
+    contenu TEXT NOT NULL,
+    typeDonnee TEXT NOT NULL,
+    dateAjout DATE NOT NULL
+);
+
+-- Table EntrainementModele
+CREATE TABLE EntrainementModele (
+    idDonnee INTEGER,
+    nom TEXT,
+    PRIMARY KEY (idDonnee, nom),
+    FOREIGN KEY (idDonnee) REFERENCES DonneeEntrainement(idDonnee) ON DELETE CASCADE,
+    FOREIGN KEY (nom) REFERENCES Modele(nom) ON DELETE CASCADE
+);
+
+-- Table Resultat
+CREATE TABLE Resultat (
+    idResultat INTEGER PRIMARY KEY ,
+    email TEXT NOT NULL,
+    nom TEXT NOT NULL,
+    dateDebut DATE NOT NULL,
+    FOREIGN KEY (email) REFERENCES Utilisateur(email) ON DELETE CASCADE,
+    FOREIGN KEY (nom) REFERENCES Modele(nom) ON DELETE CASCADE
+);
+
+-- Table MetaDonnee
+CREATE TABLE MetaDonnee (
+    idResultat INTEGER,
+    cle TEXT,
+    valeur TEXT,
+    PRIMARY KEY (idResultat, cle),
+    FOREIGN KEY (idResultat) REFERENCES Resultat(idResultat) ON DELETE CASCADE
+);
+
+-- Table Evaluation
+CREATE TABLE Evaluation (
+    email TEXT,
+    idResultat INTEGER,
+    date DATE,
+    note INT CHECK(note BETWEEN 0 AND 5),
+    commentaire TEXT,
+    PRIMARY KEY (email, idResultat),
+    FOREIGN KEY (email) REFERENCES Utilisateur(email) ON DELETE CASCADE,
+    FOREIGN KEY (idResultat) REFERENCES Resultat(idResultat) ON DELETE CASCADE
+);
+
+-- Table Collaboration
+CREATE TABLE Collaboration (
+    emailA TEXT,
+    emailB TEXT,
+    nom TEXT,
+    dateDebut DATE NOT NULL,
+    dateFin DATE,
+    PRIMARY KEY (emailA, emailB, nom),
+    FOREIGN KEY (emailA) REFERENCES Utilisateur(email) ON DELETE CASCADE,
+    FOREIGN KEY (emailB) REFERENCES Utilisateur(email) ON DELETE CASCADE,
+    FOREIGN KEY (nom) REFERENCES Modele(nom) ON DELETE CASCADE
+);
+
+-- Table HistoriqueUtilisation
+CREATE TABLE HistoriqueUtilisation (
+    email TEXT,
+    nom TEXT,
+    date DATE,
+    typeInteraction TEXT,
+    PRIMARY KEY (email, nom, date),
+    FOREIGN KEY (email) REFERENCES Utilisateur(email) ON DELETE CASCADE,
+    FOREIGN KEY (nom) REFERENCES Modele(nom) ON DELETE CASCADE
+);
