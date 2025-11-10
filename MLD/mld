@@ -1,5 +1,4 @@
-Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE)
-Premium(#email => Utilisateur, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
+Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
 Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, longueurMax: TEXT, resolution: TEXT, duree: TEXT)
 DonneeEntrainement(#contenu: TEXT, typeDonnee: TEXT, dateAjout: DATE)
 EntrainementModele(#contenu => DonneeEntrainement, #nom => Modele)
