@@ -10,8 +10,44 @@ HistoriqueUtilisation(#email => Utilisateur, #nom => Modele, #date: DATE, typeIn
 
 
 
-Contraintes explicites
+** Contraintes Explicites : **
+
+*Table Utilisateur :*
+CHECK (dateInscription <= CURRENT_DATE),
+CHECK (qualiteGeneration IN ('moyenne', 'haute')) // a verifier
+horsLigneAutorise ne peut être TRUE que si l’utilisateur est premium
+qualiteGeneration 'haute' que si Utilisateur est premium
+
+*Table Modele* : 
+
+Verification de ou Exclusif , soit l'un soit l'autre mais pas les 2 : XOR 
+CHECK (longueurMax IS NOT NULL XOR resolution IS NOT NULL XOR duree IS NOT NULL),
+CHECK (dateCreation <= CURRENT_DATE)
+
+*Table DonneeEntrainement * :
+CHECK (dateAjout <= CURRENT_DATE)
+CHECK (typeDonnee IN ('texte', 'image', 'video')) // a verifer
+
+* Table Resultat *:
+
+CHECK (dateDebut <= CURRENT_DATE)
+
+*Table MetaDonnee* :
+
+Chaque clé doit être unique pour un même résultat.
+
+
+*Table Evaluation* :
 
 0 =< Evaluation.note <= 5
+CHECK (date <= CURRENT_DATE)
+Un utilisateur ne peut évaluer qu’un seul résultat donné une fois
+
+*Table Collaboration* : 
 Collaboration.emailA =! Collaboration.emailB
-Collaboration.dateFin > Collaboration.dateDebut
+dateFin > dateDebut
+
+Table HistoriqueUtilisation :
+CHECK (typeInteraction IN ('generation', 'consultation', 'entrainement', 'evaluation')), // a verifier
+CHECK (date <= CURRENT_DATE)
+
