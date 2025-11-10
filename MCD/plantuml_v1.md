@@ -7,7 +7,7 @@ hide stereotypes
 
 
 
-' ===================== ENTITÉS =====================
+' ===================== ENTITÉS ===================== '
 
 class USERS {
 
@@ -82,7 +82,7 @@ date : DATE {PK}
 }
 
 
-' ===================== ASSOCIATIONS / CARDINALITÉS =====================
+' ===================== ASSOCIATIONS / CARDINALITÉS ===================== '
 
 HISTORIQUE_UTILISATION  "*" -- "1" USERS : "sont associé"
 DONNEE_ENTRAINEMENT  "*" -- "*" MODELE : "entraine"
