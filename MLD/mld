@@ -1,7 +1,7 @@
 
 
 Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE,TypeUtilisateur: TEXT, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
-Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, TypeModele: TEXT ,longueurMax: TEXT, resolution: TEXT, duree: TEXT)
+Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, TypeModele: TEXT ,longueurMax: INT, resolution: INT, duree: INT)
 DonneeEntrainement(#contenu: TEXT, typeDonnee: TEXT, dateAjout: DATE)
 EntrainementModele(#contenu => DonneeEntrainement, #nom => Modele)
 Resultat(#idResultat: INT, email => Utilisateur, nom => Modele, dateDebut: DATE)
@@ -24,6 +24,10 @@ horsLigneAutorise ne peut être TRUE que si TypeUtilisateur est premium
 qualiteGeneration 'haute' que si TypeUtilisateur est premium
 
 Table Modele : 
+
+Duree est un INT en minutes , 
+Longueur Max est le nombre de token , 
+et resolution est en pixel de haut , 
 
  Heritage de limiteImage et limiteVideo et limiteTexte sur Modele par classe mère 
 CHECK (TypeModele IN ('texte', 'image', 'video')),
