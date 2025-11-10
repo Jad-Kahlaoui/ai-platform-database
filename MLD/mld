@@ -14,7 +14,7 @@ HistoriqueUtilisation(#email => Utilisateur, #nom => Modele, #date: DATE, typeIn
 
 *Table Utilisateur :*
 CHECK (dateInscription <= CURRENT_DATE),
-CHECK (qualiteGeneration IN ('moyenne', 'haute')) // a verifier
+CHECK (qualiteGeneration IN ('moyenne', 'haute')) 
 horsLigneAutorise ne peut être TRUE que si l’utilisateur est premium
 qualiteGeneration 'haute' que si Utilisateur est premium
 
@@ -26,7 +26,7 @@ CHECK (dateCreation <= CURRENT_DATE)
 
 *Table DonneeEntrainement * :
 CHECK (dateAjout <= CURRENT_DATE)
-CHECK (typeDonnee IN ('texte', 'image', 'video')) // a verifer
+CHECK (typeDonnee IN ('texte', 'image', 'video')) 
 
 * Table Resultat *:
 
@@ -48,6 +48,6 @@ Collaboration.emailA =! Collaboration.emailB
 dateFin > dateDebut
 
 Table HistoriqueUtilisation :
-CHECK (typeInteraction IN ('generation', 'consultation', 'entrainement', 'evaluation')), // a verifier
+CHECK (typeInteraction IN ('generation', 'consultation', 'entrainement', 'evaluation')), 
 CHECK (date <= CURRENT_DATE)
 
