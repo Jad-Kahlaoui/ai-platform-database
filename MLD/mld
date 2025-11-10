@@ -10,7 +10,7 @@ HistoriqueUtilisation(#email => Utilisateur, #nom => Modele, #date: DATE, typeIn
 
 
 
-** Contraintes Explicites : **
+** Contraintes Explicites  **
 
 *Table Utilisateur :*
 CHECK (dateInscription <= CURRENT_DATE),
