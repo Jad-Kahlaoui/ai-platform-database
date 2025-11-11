@@ -7,8 +7,15 @@ CREATE TABLE Utilisateur (
     TypeUtilisateur TEXT NOT NULL CHECK (TypeUtilisateur IN ('normal', 'premium')),
     qualiteGeneration TEXT CHECK (qualiteGeneration IN ('moyenne', 'haute')),
     horsLigneAutorise BOOLEAN NOT NULL,
-    CHECK (horsLigneAutorise IS FALSE OR TypeUtilisateur = 'premium'),
-    CHECK (qualiteGeneration != 'haute' OR TypeUtilisateur = 'premium')
+     CHECK (
+        (TypeUtilisateur = 'premium' AND horsLigneAutorise = TRUE)
+        OR (TypeUtilisateur = 'normal' AND horsLigneAutorise = FALSE)
+    ),
+
+    CHECK (
+        (TypeUtilisateur = 'premium' AND qualiteGeneration IN ('moyenne', 'haute'))
+        OR (TypeUtilisateur = 'normal' AND qualiteGeneration = 'moyenne')
+    )
 );
 
 -- Table Modele
