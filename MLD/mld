@@ -20,8 +20,8 @@ Heritage de premium et Utilisateur par classe mère
 CHECK (dateInscription <= CURRENT_DATE),
 CHECK (qualiteGeneration IN ('moyenne', 'haute')) 
 CHECK (TypeUtilisateur IN ('normal', 'premium'))
-horsLigneAutorise ne peut être TRUE que si TypeUtilisateur est premium
-qualiteGeneration 'haute' que si TypeUtilisateur est premium
+horsLigneAutorise ne peut être TRUE que si TypeUtilisateur est premium et Un utilisateur premium ne peut avoir que TRUE sur horsLigneAutorise 
+qualiteGeneration 'haute' que si TypeUtilisateur est premium mais un Utilisateur premium aurait le droit d'avoir qualiteGeneration en moyenne ca serait son choix tandit que TypeUtilisateur normal est oblige d'avoir une qualiteGeneration moyenne
 
 Table Modele : 
 
