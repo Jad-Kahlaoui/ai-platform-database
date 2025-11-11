@@ -44,7 +44,7 @@ INSERT INTO MetaDonnee (idResultat, cle, valeur) VALUES
 (5, 'format_image', 'JPEG');
 
 INSERT INTO Evaluation (email, idResultat, date, note, commentaire) VALUES
-('bob@gmail.com', 1, '2025-03-05', 5, 'Contenu mensonger.'),
+('bob@gmail.com', 1, '2025-03-05', 1, 'Contenu mensonger.'),
 ('alice@gmail.com', 2, '2025-03-15', 4, 'Bonne qualité mais un peu lent.'),
 ('charlie@gmail.com', 3, '2025-03-25', 3, 'Résultats moyens sur certaines vidéos.'),
 ('diane@gmail.com', 4, '2025-04-03', 4, 'Rapide et précis.'),
