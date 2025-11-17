@@ -64,7 +64,13 @@ INSERT INTO Resultat (email, nom, dateDebut) VALUES
 ('georges@gmail.com', 'DetailVision', '2025-03-28'),
 ('helene@gmail.com', 'UltraGPT', '2025-04-10'),
 ('ines@gmail.com', 'ImageSharp', '2025-04-12'),
-('julien@gmail.com', 'VideoFX', '2025-04-14');
+('julien@gmail.com', 'VideoFX', '2025-04-14'),
+('alice@gmail.com', 'MiniGPT', '2025-04-15'),
+('bob@gmail.com', 'PhotoAI', '2025-04-18'),
+('charlie@gmail.com', 'GPT-TextPro', '2025-04-20'),
+('diane@gmail.com', 'VisionX', '2025-04-22'),
+('eva@gmail.com', 'VidGen3', '2025-04-25');
+
 
 
 INSERT INTO MetaDonnee (idResultat, cle, valeur) VALUES
@@ -78,7 +84,12 @@ INSERT INTO MetaDonnee (idResultat, cle, valeur) VALUES
 (7, 'resolution_testee', '4096'),
 (8, 'precision', '0.95'),
 (9, 'temps_execution', '140'),
-(10, 'duree_video', '90');
+(10, 'duree_video', '90')
+(11, 'duree_generation', '85'),
+(12, 'duree_generation', '102'),
+(13, 'duree_generation', '76'),
+(14, 'duree_generation', '94'),
+(15, 'duree_generation', '131');
 
 
 INSERT INTO Evaluation (email, idResultat, date, note, commentaire) VALUES
