@@ -68,7 +68,7 @@ CREATE TABLE Resultat (
     email TEXT NOT NULL,
     nom TEXT NOT NULL,
     dateDebut DATE NOT NULL CHECK (dateDebut <= CURRENT_DATE),
-    FOREIGN KEY (email) REFERENCES Utilisateur(email),
+    FOREIGN KEY (email) REFERENCES Utilisateur(email) ON DELETE CASCADE,
     FOREIGN KEY (nom) REFERENCES Modele(nom)
 );
 
@@ -78,7 +78,7 @@ CREATE TABLE MetaDonnee (
     cle TEXT NOT NULL,
     valeur TEXT,
     PRIMARY KEY (idResultat, cle),
-    FOREIGN KEY (idResultat) REFERENCES Resultat(idResultat)
+    FOREIGN KEY (idResultat) REFERENCES Resultat(idResultat) ON DELETE CASCADE
 );
 
 -- Table Evaluation
@@ -89,8 +89,8 @@ CREATE TABLE Evaluation (
     note INT NOT NULL CHECK (note >= 0 AND note <= 5),
     commentaire TEXT,
     PRIMARY KEY (email, idResultat),
-    FOREIGN KEY (email) REFERENCES Utilisateur(email),
-    FOREIGN KEY (idResultat) REFERENCES Resultat(idResultat)
+    FOREIGN KEY (email) REFERENCES Utilisateur(email) ON DELETE CASCADE,
+    FOREIGN KEY (idResultat) REFERENCES Resultat(idResultat) ON DELETE CASCADE
 );
 
 -- Table Collaboration
@@ -101,8 +101,8 @@ CREATE TABLE Collaboration (
     dateDebut TIMESTAMP NOT NULL,
     dateFin TIMESTAMP NOT NULL,
     PRIMARY KEY (emailA, emailB, nom),
-    FOREIGN KEY (emailA) REFERENCES Utilisateur(email),
-    FOREIGN KEY (emailB) REFERENCES Utilisateur(email),
+    FOREIGN KEY (emailA) REFERENCES Utilisateur(email) ON DELETE CASCADE,
+    FOREIGN KEY (emailB) REFERENCES Utilisateur(email) ON DELETE CASCADE,
     FOREIGN KEY (nom) REFERENCES Modele(nom),
     CHECK (emailA != emailB),
     CHECK (dateFin > dateDebut)
@@ -115,6 +115,6 @@ CREATE TABLE HistoriqueUtilisation (
     date DATE NOT NULL CHECK (date <= CURRENT_DATE),
     typeInteraction TEXT NOT NULL CHECK (typeInteraction IN ('generation', 'consultation', 'entrainement', 'evaluation')),
     PRIMARY KEY (email, nom, date),
-    FOREIGN KEY (email) REFERENCES Utilisateur(email),
+    FOREIGN KEY (email) REFERENCES Utilisateur(email) ON DELETE CASCADE,
     FOREIGN KEY (nom) REFERENCES Modele(nom)
 );
