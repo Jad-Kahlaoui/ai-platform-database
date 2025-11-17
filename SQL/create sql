@@ -9,14 +9,6 @@
     DROP TABLE IF EXISTS HistoriqueUtilisation ;
     
 
-
-              
-
-
-
-
-
-
 -- Table Utilisateur
 CREATE TABLE Utilisateur (
     email TEXT PRIMARY KEY,
