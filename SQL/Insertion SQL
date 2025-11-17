@@ -69,7 +69,11 @@ INSERT INTO Resultat (email, nom, dateDebut) VALUES
 ('bob@gmail.com', 'PhotoAI', '2025-04-18'),
 ('charlie@gmail.com', 'GPT-TextPro', '2025-04-20'),
 ('diane@gmail.com', 'VisionX', '2025-04-22'),
-('charlie@gmail.com', 'VidGen3', '2025-04-25');
+('charlie@gmail.com', 'VidGen3', '2025-04-25'),
+('bob@gmail.com', 'VisionX', '2025-04-15'),
+('charlie@gmail.com', 'VisionX', '2025-04-16'),
+('diane@gmail.com', 'VisionX', '2025-04-17'),
+('eva@gmail.com', 'VisionX', '2025-04-18');
 
 
 
@@ -85,11 +89,11 @@ INSERT INTO MetaDonnee (idResultat, cle, valeur) VALUES
 (8, 'precision', '0.95'),
 (9, 'temps_execution', '140'),
 (10, 'duree_video', '90')
-(11, 'duree_generation', '85'),
-(12, 'duree_generation', '102'),
-(13, 'duree_generation', '76'),
-(14, 'duree_generation', '94'),
-(15, 'duree_generation', '131');
+(14, 'duree_generation', '85'),
+(16, 'duree_generation', '102'),
+(17, 'duree_generation', '76'),
+(18, 'duree_generation', '94'),
+(19, 'duree_generation', '131');
 
 
 INSERT INTO Evaluation (email, idResultat, date, note, commentaire) VALUES
@@ -130,5 +134,10 @@ INSERT INTO HistoriqueUtilisation (email, nom, date, typeInteraction) VALUES
 ('ines@gmail.com', 'ImageSharp', '2025-04-12', 'evaluation'),
 ('julien@gmail.com', 'VideoFX', '2025-04-14', 'entrainement'),
 ('alice@gmail.com', 'UltraGPT', '2025-03-20', 'consultation'),
-('bob@gmail.com', 'TextLite', '2025-03-22', 'generation');
+('bob@gmail.com', 'TextLite', '2025-03-22', 'generation'),
+('bob@gmail.com', 'VisionX', '2025-04-15', 'generation'),
+('charlie@gmail.com', 'VisionX', '2025-04-16', 'generation'),
+('diane@gmail.com', 'VisionX', '2025-04-17', 'generation'),
+('eva@gmail.com', 'VisionX', '2025-04-18', 'generation');
+
 
