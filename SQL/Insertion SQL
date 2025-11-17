@@ -72,8 +72,8 @@ INSERT INTO Resultat (email, nom, dateDebut) VALUES
 ('charlie@gmail.com', 'VidGen3', '2025-04-25'),
 ('bob@gmail.com', 'VisionX', '2025-04-15'),
 ('charlie@gmail.com', 'VisionX', '2025-04-16'),
-('diane@gmail.com', 'VisionX', '2025-04-17'),
-('eva@gmail.com', 'VisionX', '2025-04-18');
+('diane@gmail.com', 'VisionX', '2025-11-05'),
+('eva@gmail.com', 'VisionX', '2025-11-16');
 
 
 
@@ -141,7 +141,7 @@ INSERT INTO HistoriqueUtilisation (email, nom, date, typeInteraction) VALUES
 ('bob@gmail.com', 'TextLite', '2025-03-22', 'generation'),
 ('bob@gmail.com', 'VisionX', '2025-04-15', 'generation'),
 ('charlie@gmail.com', 'VisionX', '2025-04-16', 'generation'),
-('diane@gmail.com', 'VisionX', '2025-04-17', 'generation'),
-('eva@gmail.com', 'VisionX', '2025-04-18', 'generation');
+('diane@gmail.com', 'VisionX', '2025-11-05', 'generation'),
+('eva@gmail.com', 'VisionX', '2025-11-16', 'generation');
 
 
