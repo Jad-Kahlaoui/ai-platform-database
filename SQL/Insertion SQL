@@ -117,11 +117,11 @@ INSERT INTO Collaboration (emailA, emailB, nom, dateDebut, dateFin) VALUES
 ('alice@gmail.com', 'bob@gmail.com', 'GPT-TextPro', '2025-02-01', '2025-03-01'),
 ('charlie@gmail.com', 'diane@gmail.com', 'VidGen3', '2025-03-01', '2025-03-25'),
 ('bob@gmail.com', 'eva@gmail.com', 'VisionX', '2025-03-05', '2025-04-01'),
-('alice@gmail.com', 'charlie@gmail.com', 'MiniGPT', '2025-02-15', '2027-12-03'),
+('alice@gmail.com', 'charlie@gmail.com', 'MiniGPT', '2025-02-15', '2027-02-15'),
 ('francois@gmail.com', 'alice@gmail.com', 'TextLite', '2025-03-01', '2025-03-20'),
 ('georges@gmail.com', 'charlie@gmail.com', 'VideoFX', '2025-03-15', '2025-04-02'),
 ('helene@gmail.com', 'bob@gmail.com', 'DetailVision', '2025-02-28', '2025-03-25'),
-('ines@gmail.com', 'eva@gmail.com', 'UltraGPT', '2025-03-10', NULL);
+('ines@gmail.com', 'eva@gmail.com', 'UltraGPT', '2025-03-10', '2026-03-10);
 
 
 INSERT INTO HistoriqueUtilisation (email, nom, date, typeInteraction) VALUES
