@@ -38,10 +38,6 @@ ORDER BY r.dateDebut DESC;
 
 
 
-UPDATE Evaluation
-SET note = 4,                 
-WHERE email = 'utilisateur@example.com'
-  AND idResultat = 123;       -- id du résultat à mettre à jour
 
 
 ADMIN 
