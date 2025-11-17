@@ -1,3 +1,63 @@
+USERS
+
+SELECT nom, description from modele
+
+
+INSERT INTO Evaluation (email, idResultat, date, note, commentaire)
+VALUES (
+    'utilisateur@example.com',  
+    123,                       
+    CURRENT_DATE,               
+    5,                          
+    'Excellent résultat'        
+);
+
+
+
+UPDATE Evaluation
+SET note = 4,                 
+    commentaire = 'Bien joué' 
+WHERE email = 'utilisateur@example.com'
+  AND idResultat = 123;       
+
+
+SELECT
+    r.idResultat,
+    r.nom AS modele,
+    m.description AS description_modele,
+    r.dateDebut,
+    e.note,
+    e.commentaire
+FROM Resultat r
+JOIN Modele m ON r.nom = m.nom
+LEFT JOIN Evaluation e
+    ON r.idResultat = e.idResultat
+   AND e.email = r.email
+WHERE r.email = 'diane@gmail.com'
+ORDER BY r.dateDebut DESC;
+
+
+
+UPDATE Evaluation
+SET note = 4,                 
+WHERE email = 'utilisateur@example.com'
+  AND idResultat = 123;       -- id du résultat à mettre à jour
+
+
+ADMIN 
+
+DELETE FROM Utilisateur
+WHERE email = 'charlie@gmail.com';
+
+UPDATE Utilisateur
+SET motDePasse = '321'
+WHERE email = 'alice@gmail.com';
+
+
+
+
+
+
 1)
 SELECT 
     m.nom AS modele,
