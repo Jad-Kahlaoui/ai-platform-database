@@ -7,9 +7,83 @@ USER = "nf18a016"
 PASSWORD = "EX8GdC5vmx9e"
 DATABASE = "nf18a016"
 
+
+
+# choix Supprimer commentaire 
+def suppComment(conn):
+
+    print("\n--- SUPPRIMER UNE ÉVALUATION (COMMENTAIRE) ---")
+
+    email = input("Email de l'utilisateur ayant laissé l'évaluation : ")
+    id_resultat = input("ID du résultat associé : ")
+
+    cur = conn.cursor()
+
+    cur.execute("""
+        DELETE FROM Evaluation
+        WHERE email = %s AND idResultat = %s
+    """, (email, id_resultat))
+
+    conn.commit()
+
+    print("\n Évaluation supprimée (s'il y en avait une).\n")
+
+    
+
 conn = psycopg2.connect(
     "host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD)
 )
+
+#modifier statut de premium a normal ou inverse 
+def modifierStatutUser(conn):
+
+    print("\n--- MODIFIER LE STATUT D'UN UTILISATEUR ---")
+
+    email = input("Entrez l'email de l'utilisateur : ")
+
+    cur = conn.cursor()
+
+    # Vérifier si l'utilisateur existe
+    cur.execute("SELECT TypeUtilisateur FROM Utilisateur WHERE email = %s", (email,))
+    row = cur.fetchone()
+
+    if row is None:
+        print("\n Cet utilisateur n'existe pas.\n")
+        return
+
+    current_status = row[0]
+    print(f"\nStatut actuel : {current_status}")
+
+    # Choisir le nouveau statut
+    new_status = input("Entrez le nouveau statut (normal / premium) : ").lower()
+
+    while new_status not in ['normal', 'premium']:
+        new_status = input("Valeur invalide. Entrez 'normal' ou 'premium' : ").lower()
+
+    # Déterminer les champs associés
+    if new_status == 'premium':
+        new_quality = 'haute'
+        hors_ligne = True
+    else:
+        new_quality = 'moyenne'
+        hors_ligne = False
+
+    # Mise à jour SQL
+    cur.execute("""
+        UPDATE Utilisateur
+        SET TypeUtilisateur = %s,
+            qualiteGeneration = %s,
+            horsLigneAutorise = %s
+        WHERE email = %s
+    """, (new_status, new_quality, hors_ligne, email))
+
+    conn.commit()
+
+    print(f"\n Le statut de {email} a été mis à jour :")
+    print(f"  → Type : {new_status}")
+    print(f"  → Qualité : {new_quality}")
+    print(f"  → Hors-ligne : {hors_ligne}\n")
+
 
 choice = '1'
 while choice in ['1','2','3','4','5','6','7']:
@@ -40,3 +114,6 @@ while choice in ['1','2','3','4','5','6','7']:
         collaborationsActives(conn) 
 
 conn.close()
+
+
+
