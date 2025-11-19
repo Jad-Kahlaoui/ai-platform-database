@@ -8,6 +8,9 @@ PASSWORD = "EX8GdC5vmx9e"
 DATABASE = "nf18a016"
 
 
+conn = psycopg2.connect(
+    "host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD)
+)
 
 # choix Supprimer commentaire 
 def suppComment(conn):
@@ -30,9 +33,7 @@ def suppComment(conn):
 
     
 
-conn = psycopg2.connect(
-    "host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD)
-)
+
 
 #modifier statut de premium a normal ou inverse 
 def modifierStatutUser(conn):
