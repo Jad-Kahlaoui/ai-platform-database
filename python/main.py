@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import psycopg2
+from datetime import date
+
 
 HOST = "tuxa.sme.utc"
 USER = "nf18a016"
@@ -11,6 +13,33 @@ DATABASE = "nf18a016"
 conn = psycopg2.connect(
     "host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD)
 )
+
+# Version J 
+def suppUser(conn):
+
+    print("\n--- SUPPRIMER UN UTILISATEUR ---\n")
+
+    email_supp = input("Entrez l'adresse email de l'utilisateur à supprimer : ").strip()
+
+    try:
+        with conn.cursor() as cur:
+
+            cur.execute("""
+                DELETE FROM Utilisateur
+                WHERE email = %s
+            """, (email_supp,))
+
+            conn.commit()
+
+            if cur.rowcount == 0:
+                print("\nAucun utilisateur trouvé avec cet email.\n")
+            else:
+                print("\nUtilisateur supprimé avec succès.\n")
+
+    except Exception as e:
+        conn.rollback()
+        print("Erreur SQL :", e)
+
 
 # version J 
 def ajouterModele(conn):
