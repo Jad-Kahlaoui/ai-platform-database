@@ -41,48 +41,62 @@ def modifierStatutUser(conn):
 
     email = input("Entrez l'email de l'utilisateur : ")
 
-    cur = conn.cursor()
+    try:
+        with conn.cursor() as cur:
 
-    # Vérifier si l'utilisateur existe
-    cur.execute("SELECT TypeUtilisateur FROM Utilisateur WHERE email = %s", (email,))
-    row = cur.fetchone()
+            # Vérifier si l'utilisateur existe
+            cur.execute("SELECT TypeUtilisateur, qualiteGeneration, horsLigneAutorise FROM Utilisateur WHERE email = %s", (email,))
+            row = cur.fetchone()
 
-    if row is None:
-        print("\n Cet utilisateur n'existe pas.\n")
-        return
+            if row is None:
+                print("\n Cet utilisateur n'existe pas.\n")
+                return
 
-    current_status = row[0]
-    print(f"\nStatut actuel : {current_status}")
+            current_status, current_quality, current_horsligne = row
 
-    # Choisir le nouveau statut
-    new_status = input("Entrez le nouveau statut (normal / premium) : ").lower()
+            print(f"\nStatut actuel : {current_status}")
+            print(f"Qualité actuelle : {current_quality}")
+            print(f"Hors-ligne actuel : {current_horsligne}")
 
-    while new_status not in ['normal', 'premium']:
-        new_status = input("Valeur invalide. Entrez 'normal' ou 'premium' : ").lower()
+            # Choisir le nouveau statut
+            new_status = input("\nNouveau statut (normal / premium) : ").lower()
+            while new_status not in ['normal', 'premium']:
+                new_status = input("Valeur invalide. Entrez 'normal' ou 'premium' : ").lower()
 
-    # Déterminer les champs associés
-    if new_status == 'premium':
-        new_quality = 'haute'
-        hors_ligne = True
-    else:
-        new_quality = 'moyenne'
-        hors_ligne = False
+            # Déterminer les contraintes métier etablie en MLD 
+            if new_status == 'premium':
+                # Premium peut choisir entre haute ou moyenne
+                new_quality = input("Choisir la qualité (haute / moyenne) : ").lower()
+                while new_quality not in ['haute', 'moyenne']:
+                    new_quality = input("Valeur invalide. Choisir 'haute' ou 'moyenne' : ").lower()
 
-    # Mise à jour SQL
-    cur.execute("""
-        UPDATE Utilisateur
-        SET TypeUtilisateur = %s,
-            qualiteGeneration = %s,
-            horsLigneAutorise = %s
-        WHERE email = %s
-    """, (new_status, new_quality, hors_ligne, email))
+                hors_ligne = True  # premium = TRUE obligatoire
 
-    conn.commit()
+            else:
+                # normal : qualité = moyenne
+                new_quality = 'moyenne'
+                hors_ligne = False
 
-    print(f"\n Le statut de {email} a été mis à jour :")
-    print(f"  → Type : {new_status}")
-    print(f"  → Qualité : {new_quality}")
-    print(f"  → Hors-ligne : {hors_ligne}\n")
+            # Mise à jour SQL
+            cur.execute("""
+                UPDATE Utilisateur
+                SET TypeUtilisateur = %s,
+                    qualiteGeneration = %s,
+                    horsLigneAutorise = %s
+                WHERE email = %s
+            """, (new_status, new_quality, hors_ligne, email))
+
+            conn.commit()
+
+            print(f"\n Le statut de {email} a été mis à jour :")
+            print(f"  → Type : {new_status}")
+            print(f"  → Qualité : {new_quality}")
+            print(f"  → Hors-ligne : {hors_ligne}\n")
+
+    except Exception as e:
+        conn.rollback()
+        print("Erreur : ", e)
+
 
 
 choice = '1'
@@ -111,7 +125,12 @@ while choice in ['1','2','3','4','5','6','7']:
     elif choice == '6':
         utilisateursActifs(conn) 
     elif choice == '7':
-        collaborationsActives(conn) 
+        collaborationsActives(conn)
+    else: 
+        print("Fin du programme.")
+        break
+
+
 
 conn.close()
 
