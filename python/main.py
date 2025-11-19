@@ -210,7 +210,7 @@ while choice in ['1','2','3','4','5','6','7','8','9','10']:
     elif choice == '5':
         rq.dureeMoyenneGeneration(conn) 
     elif choice == '6':
-        rq.utilisateursActifs(conn) 
+    print("Erreur : non implemente") 
     elif choice == '7':
         rq.collaborationsActives(conn)
     elif choice == '8':
