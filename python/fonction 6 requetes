@@ -1,6 +1,4 @@
-fonctions des 6 requetes sql
 
-1)
 
 def dureeMoyenneGeneration(conn):
 
@@ -43,9 +41,8 @@ def dureeMoyenneGeneration(conn):
 
 
 
-2) def utilisateursActifs(conn):
 
-    print("\n--- UTILISATEURS LES PLUS ACTIFS ---\n")
+print("\n--- UTILISATEURS LES PLUS ACTIFS ---\n")
 
     sql = """
         SELECT 
@@ -77,7 +74,7 @@ def dureeMoyenneGeneration(conn):
         print("Erreur SQL :", e)
 
 
-3) def collaborationsActives(conn):
+def collaborationsActives(conn):
 
     print("\n--- MODELES AVEC PARAMÈTRES IMPORTANTS ---\n")
 
@@ -112,9 +109,6 @@ def dureeMoyenneGeneration(conn):
     except Exception as e:
         print("Erreur SQL :", e)
 
-
-
-4)
 
 
 def statistiquesEvaluations(conn):
