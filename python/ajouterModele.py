@@ -10,7 +10,7 @@ DATABASE = "nf18a016"
 
 conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD))
 
-
+# je pense que ca ne fonctionne pas 
 def quote(s):
   if s:
     return '\'%s\'' % s
