@@ -182,7 +182,7 @@ def modifierStatutUser(conn):
 
 
 choice = '1'
-while choice in ['1','2','3','4','5','6','7']:
+while choice in ['1','2','3','4','5','6','7','8','9','10']:
     print("1 - Supprimer un utilisateur")
     print("2 - Supprimer un commentaire")
     print("3 - Modifier le statut d'un utilisateur")
@@ -190,6 +190,10 @@ while choice in ['1','2','3','4','5','6','7']:
     print("5 - Calculer la durée moyenne de génération de contenu pour chaque modèle d’IA")
     print("6 - Identifier les utilisateurs les plus actifs dans la base de données")
     print("7 - Lister les collaborations actives entre utilisateurs et modèles d’IA")
+    print("8 - Statistiques des évaluations par modèle")
+    print("9 - Modèles les plus utilisés (9 derniers mois)")
+    print("10 - Collaborations actives")
+
     print("Autre - Quitter")
 
     choice = input()
@@ -208,6 +212,12 @@ while choice in ['1','2','3','4','5','6','7']:
         utilisateursActifs(conn) 
     elif choice == '7':
         collaborationsActives(conn)
+    elif choice == '8':
+        statistiquesEvaluations(conn)
+    elif choice == '9':
+        modelesUtilisationRecente(conn)
+    elif choice == '10':
+        collaborationsActivesModeles(conn)
     else: 
         print("Fin du programme.")
         break
