@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import psycopg2
+import rqst as rq
 from datetime import date
 
 
@@ -207,17 +208,17 @@ while choice in ['1','2','3','4','5','6','7','8','9','10']:
     elif choice == '4':
         ajouterModele(conn)  
     elif choice == '5':
-        dureeMoyenneGeneration(conn) 
+        rq.dureeMoyenneGeneration(conn) 
     elif choice == '6':
-        utilisateursActifs(conn) 
+        rq.utilisateursActifs(conn) 
     elif choice == '7':
-        collaborationsActives(conn)
+        rq.collaborationsActives(conn)
     elif choice == '8':
-        statistiquesEvaluations(conn)
+        rq.statistiquesEvaluations(conn)
     elif choice == '9':
-        modelesUtilisationRecente(conn)
+        rq.modelesUtilisationRecente(conn)
     elif choice == '10':
-        collaborationsActivesModeles(conn)
+        rq.collaborationsActivesModeles(conn)
     else: 
         print("Fin du programme.")
         break
