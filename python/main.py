@@ -12,6 +12,58 @@ conn = psycopg2.connect(
     "host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD)
 )
 
+# version J 
+def ajouterModele(conn):
+
+    print("\n--- AJOUTER UN NOUVEAU MODELE ---\n")
+
+    nom = input("Nom du modèle : ").strip()
+    descript = input("Description du modèle : ").strip()
+    dateCreation = date.today()
+
+    # Liste des types possibles
+    types_modele = ["image", "texte", "video"]
+
+    type_modele = input("Type de modèle (image / texte / video) : ").lower()
+    while type_modele not in types_modele:
+        print("Valeur invalide. Veuillez entrer : image, texte ou video.")
+        type_modele = input("Type de modèle (image / texte / video) : ").lower()
+
+    try:
+        longueur = int(input("Longueur maximum de la saisie : "))
+        resolution = int(input("Résolution : "))
+        duree = int(input("Durée moyenne de génération (en secondes) : "))
+    except ValueError:
+        print("\nErreur : vous devez saisir des entiers.\n")
+        return
+
+    try:
+        with conn.cursor() as cur:
+            sql = """
+                INSERT INTO Modele
+                (nom, description, dateCreation, TypeModele, longueurMax, resolution, duree)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """
+
+            cur.execute(sql, (
+                nom,
+                descript,
+                dateCreation,
+                type_modele,
+                longueur,
+                resolution,
+                duree
+            ))
+
+            conn.commit()
+
+            print("\n>>> Modèle ajouté avec succès !\n")
+
+    except Exception as e:
+        conn.rollback()
+        print("\nErreur SQL :", e)
+
+
 # choix Supprimer commentaire 
 def suppComment(conn):
 
