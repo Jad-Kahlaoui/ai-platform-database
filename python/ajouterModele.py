@@ -1,5 +1,15 @@
 #!/usr/bin/python3
 
+
+
+
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE 
+
 import psycopg2
 from datetime import date
 
