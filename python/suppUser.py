@@ -1,5 +1,14 @@
 #!/usr/bin/python3
 
+
+
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE 
+# ! NON UTILISE
+
 import psycopg2
 
 HOST = "tuxa.sme.utc"
