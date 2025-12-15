@@ -41,8 +41,8 @@ def dureeMoyenneGeneration(conn):
 
 
 
-
-print("\n--- UTILISATEURS LES PLUS ACTIFS ---\n")
+def Utilisateuractif(conn):
+    print("\n--- UTILISATEURS LES PLUS ACTIFS ---\n")
 
     sql = """
         SELECT 
@@ -228,3 +228,4 @@ def collaborationsActivesModeles(conn):
 
     except Exception as e:
         print("Erreur SQL :", e)
+
