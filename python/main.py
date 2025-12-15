@@ -8,7 +8,7 @@ from datetime import date
 HOST = "tuxa.sme.utc"
 USER = "nf18a016"
 PASSWORD = "EX8GdC5vmx9e"
-DATABASE = "nf18a016"
+DATABASE = "dbnf18a016"
 
 
 conn = psycopg2.connect(
@@ -210,7 +210,7 @@ while choice in ['1','2','3','4','5','6','7','8','9','10']:
     elif choice == '5':
         rq.dureeMoyenneGeneration(conn) 
     elif choice == '6':
-    print("Erreur : non implemente") 
+        rq.Utilisateuractif(conn)
     elif choice == '7':
         rq.collaborationsActives(conn)
     elif choice == '8':
