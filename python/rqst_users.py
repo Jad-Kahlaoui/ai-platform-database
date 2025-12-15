@@ -1,7 +1,5 @@
 def mettreUneEvaluations(conn, email_utilisateur):
-
     print(f"\n--- METTRE UNE ÉVALUATION ({email_utilisateur}) ---\n")
-
     sql = """
         SELECT 
             r.nom AS modele,
@@ -18,11 +16,9 @@ def mettreUneEvaluations(conn, email_utilisateur):
         with conn.cursor() as cur:
             cur.execute(sql, (email_utilisateur,))
             rows = cur.fetchall()
-
             if not rows:
                 print("Aucune évaluation trouvée pour cet utilisateur.\n")
                 return
-
             for modele, note, comm, date_eval in rows:
                 print(f"• Modèle évalué : {modele}")
                 print(f"  Date : {date_eval}")
@@ -34,9 +30,7 @@ def mettreUneEvaluations(conn, email_utilisateur):
 
 
 def afficherMonHistorique(conn, email_utilisateur):
-
     print(f"\n--- MON HISTORIQUE D'UTILISATION ({email_utilisateur}) ---\n")
-
     sql = """
         SELECT 
             nom,
@@ -51,16 +45,12 @@ def afficherMonHistorique(conn, email_utilisateur):
         with conn.cursor() as cur:
             cur.execute(sql, (email_utilisateur,))
             rows = cur.fetchall()
-
             if not rows:
                 print("Historique vide.\n")
                 return
-
             for modele, type_int, date_hist in rows:
                 print(f"• [{date_hist}] {type_int.upper()} sur le modèle '{modele}'")
-
-            print() # Saut de ligne final
-
+            print() 
     except Exception as e:
         print("Erreur SQL :", e)
 
@@ -68,8 +58,6 @@ def afficherMonHistorique(conn, email_utilisateur):
 def afficherMesResultats(conn, email_utilisateur):
 
     print(f"\n--- MES RÉSULTATS GÉNÉRÉS ({email_utilisateur}) ---\n")
-
-    # Utilisation de STRING_AGG pour PostgreSQL (équivalent de GROUP_CONCAT)
     sql = """
         SELECT 
             r.nom AS modele,
@@ -86,26 +74,19 @@ def afficherMesResultats(conn, email_utilisateur):
         with conn.cursor() as cur:
             cur.execute(sql, (email_utilisateur,))
             rows = cur.fetchall()
-
             if not rows:
                 print("Aucun résultat généré.\n")
                 return
-
             for modele, date_deb, metas in rows:
                 print(f"• Modèle : {modele}")
                 print(f"  Date : {date_deb}")
-                # Si metas est None (pas de métadonnées), on affiche "N/A"
                 print(f"  Détails : {metas if metas else 'N/A'}\n")
-
     except Exception as e:
         print("Erreur SQL :", e)
 
 
 def afficherMesCollaborations(conn, email_utilisateur):
-
     print(f"\n--- MES COLLABORATIONS ({email_utilisateur}) ---\n")
-
-    # On cherche si l'user est A ou B, et on affiche l'AUTRE comme partenaire
     sql = """
         SELECT 
             CASE 
@@ -122,7 +103,6 @@ def afficherMesCollaborations(conn, email_utilisateur):
 
     try:
         with conn.cursor() as cur:
-            # On passe l'email 3 fois car il y a 3 placeholders %s dans la requête
             cur.execute(sql, (email_utilisateur, email_utilisateur, email_utilisateur))
             rows = cur.fetchall()
 
@@ -140,9 +120,7 @@ def afficherMesCollaborations(conn, email_utilisateur):
 
 
 def afficherTousLesModeles(conn):
-
     print("\n--- CATALOGUE DES MODÈLES DISPONIBLES ---\n")
-
     sql = """
         SELECT 
             nom,
@@ -167,8 +145,7 @@ def afficherTousLesModeles(conn):
             for nom, desc, type_m, l_max, res, dur in rows:
                 print(f"• [{type_m.upper()}] {nom}")
                 print(f"  Description : {desc}")
-                
-                # Affichage conditionnel selon le type pour faire propre
+
                 if type_m == 'texte' and l_max:
                     print(f"  Limite : {l_max} mots")
                 elif type_m == 'image' and res:
