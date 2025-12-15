@@ -3,6 +3,7 @@
 import psycopg2
 import rqst as rq
 import getpass
+import rqst_users as r
 
 from datetime import date
 
@@ -116,15 +117,15 @@ elif role == "user":
         choice = input()
 
         if choice == '1':
-            mettreUneEvaluations(conn)
+            r.mettreUneEvaluations(conn)
         elif choice == '2':
-            afficherMonHistorique(conn)
+            r.afficherMonHistorique(conn)
         elif choice == '3':
-            afficherMesResultats(conn)
+            r.afficherMesResultats(conn)
         elif choice == '4':
-            afficherMesCollaborations(conn)
+            r.afficherMesCollaborations(conn)
         elif choice == '5':
-            afficherTousLesModeles(conn)
+            r.afficherTousLesModeles(conn)
         else:
             print("Fin du programme.")
             break
