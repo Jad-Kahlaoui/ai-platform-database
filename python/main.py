@@ -68,7 +68,7 @@ while role is None:
 # Menu admin
 if role == "admin":
     choice = '1'
-    while choice in [str(i) for i in range(1, 11)]:
+    while choice in [str(i) for i in range(1, 12)]:
         print("\n--- MENU ADMIN ---")
         print("1 - Supprimer un utilisateur")
         print("2 - Supprimer un commentaire")
@@ -80,18 +80,19 @@ if role == "admin":
         print("8 - Statistiques des évaluations par modèle")
         print("9 - Modèles les plus utilisés (9 derniers mois)")
         print("10 - Collaborations actives")
+        print("11 - Creer utilisateur")
         print("Autre - Quitter")
 
         choice = input()
 
         if choice == '1':
-            suppUser(conn)
+            rq.suppUser(conn)
         elif choice == '2':
-            suppComment(conn)
+            rq.suppComment(conn)
         elif choice == '3':
-            modifierStatutUser(conn)
+            rq.modifierStatutUser(conn)
         elif choice == '4':
-            ajouterModele(conn)
+            rq.ajouterModele(conn)
         elif choice == '5':
             rq.dureeMoyenneGeneration(conn)
         elif choice == '6':
@@ -104,6 +105,8 @@ if role == "admin":
             rq.modelesUtilisationRecente(conn)
         elif choice == '10':
             rq.collaborationsActivesModeles(conn)
+        elif choice == '11':    
+            rq.creerUtilisateur(conn)
         else:
             print("Fin du programme.")
             break
@@ -123,7 +126,7 @@ elif role == "user":
         choice = input()
 
         if choice == '1':
-            r.mettreUneEvaluations(conn, email_utilisateur)
+            r.ajouterEvaluation(conn, email_utilisateur)
         elif choice == '2':
             r.afficherMonHistorique(conn, email_utilisateur)
         elif choice == '3':
