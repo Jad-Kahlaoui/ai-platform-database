@@ -14,7 +14,7 @@
 
 | QUI | QUOI |
 | ------ | ------ |
-|   Jad     |        |
+|   Jad     |  Application Python     |
 |    Enora    |        |
-|    Romain    |        |
-|    Adrien    |        |
+|    Romain    |    Normalisation 3NF    |
+|    Adrien    |    Aide a l'implémentation du menu Utilisateur de l'app Python    |
