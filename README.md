@@ -18,3 +18,7 @@
 |    Enora    |        |
 |    Romain    |    Normalisation 3NF    |
 |    Adrien    |    Aide a l'implémentation du menu Utilisateur de l'app Python    |
+
+
+
+L'IA a été en grande partie utilisé sur le projet afin de génerer des données pour les insertions dans les tables SQL afin de rendre possible le devoir sur les SELECT 
