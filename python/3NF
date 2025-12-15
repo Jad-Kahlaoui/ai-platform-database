@@ -1,44 +1,62 @@
 Utilisateur
 Attributs : email (PK), nom, motDePasse, dateInscription, TypeUtilisateur, qualiteGeneration, horsLigneAutorise
-Dépendances fonctionnelles : email → nom, motDePasse, dateInscription, TypeUtilisateur, qualiteGeneration, horsLigneAutorise
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle (clé simple)
 3NF : tous les attributs dépendent directement de la clé primaire, pas de dépendances transitives
+Dépendances fonctionnelles : email → nom, motDePasse, dateInscription, TypeUtilisateur, qualiteGeneration, horsLigneAutorise
 
 Modele
 Attributs : nom (PK), description, dateCreation, TypeModele, longueurMax, resolution, duree
-Dépendances fonctionnelles : nom → description, dateCreation, TypeModele, longueurMax, resolution, duree
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle (clé simple)
 3NF : tous les attributs dépendent directement de la clé primaire, pas de dépendances transitives
+Dépendances fonctionnelles : nom → description, dateCreation, TypeModele, longueurMax, resolution, duree
 
 DonneeEntrainement
 Attributs : contenu (PK), typeDonnee, dateAjout
-Dépendances fonctionnelles : contenu → typeDonnee, dateAjout
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle (clé simple)
 3NF : tous les attributs dépendent directement de la clé primaire, pas de dépendances transitives
+Dépendances fonctionnelles : contenu → typeDonnee, dateAjout
 
 EntrainementModele
 Attributs : contenu => DonneeEntrainement, nom => Modele (clé composite)
-Dépendances fonctionnelles : (contenu, nom) → rien d’autre (pas d’attributs non clé)
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle sur la clé composite
 3NF : toutes les dépendances sont sur la clé primaire, pas de dépendances transitives
+Dépendances fonctionnelles : (contenu, nom) → rien d’autre (pas d’attributs non clé)
 
 Resultat
 Attributs : idResultat (PK), email => Utilisateur, nom => Modele, dateDebut
-Dépendances fonctionnelles : idResultat → email, nom, dateDebut
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle (clé simple)
 3NF : pas de dépendances transitives
+Dépendances fonctionnelles : idResultat → email, nom, dateDebut
 
 MetaDonnee
 Attributs : idResultat => Resultat, cle, valeur (clé composite idResultat+cle)
-Dépendances fonctionnelles : (idResultat, cle) → valeur
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle sur la clé composite
 3NF : dépendance complète sur la clé composite, pas de dépendances transitives
+Dépendances fonctionnelles : (idResultat, cle) → valeur
 
 Evaluation
 Attributs : email => Utilisateur, idResultat => Resultat, date, note, commentaire (clé composite email+idResultat)
-Dépendances fonctionnelles : (email, idResultat) → date, note, commentaire
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle sur la clé composite
 3NF : pas de dépendances transitives, tous les attributs dépendent de la clé primaire
+Dépendances fonctionnelles : (email, idResultat) → date, note, commentaire
 
 Collaboration
 Attributs : emailA => Utilisateur, emailB => Utilisateur, nom => Modele, dateDebut, dateFin (clé composite emailA+emailB+nom)
-Dépendances fonctionnelles : (emailA, emailB, nom) → dateDebut, dateFin
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle sur la clé composite
 3NF : pas de dépendances transitives
+Dépendances fonctionnelles : (emailA, emailB, nom) → dateDebut, dateFin
 
 HistoriqueUtilisation
 Attributs : email => Utilisateur, nom => Modele, date, typeInteraction (clé composite email+nom+date)
-Dépendances fonctionnelles : (email, nom, date) → typeInteraction
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle sur la clé composite
 3NF : pas de dépendances transitives
+Dépendances fonctionnelles : (email, nom, date) → typeInteraction
