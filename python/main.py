@@ -106,13 +106,28 @@ elif role == "user":
     choice = '1'
     while choice == '1':
         print("\n--- MENU UTILISATEUR ---")
-        print("1 - Option fictive (à compléter plus tard)")
+        print("1 - Mettre une évaluation")
+        print("2 - Afficher mon historique d'utilisation")
+        print("3 - Afficher mes résultats générés")
+        print("4 - Afficher mes collaborations")
+        print("5 - Afficher les modèles dipsonibles")
         print("Autre - Quitter")
 
         choice = input()
 
         if choice == '1':
-            print("Cette option est encore à implémenter.")
+            mettreUneEvaluations(conn)
+        elif choice == '2':
+            afficherMonHistorique(conn)
+        elif choice == '3':
+            afficherMesResultats(conn)
+        elif choice == '4':
+            afficherMesCollaborations(conn)
+        elif choice == '5':
+            afficherTousLesModeles(conn)
+        else:
+            print("Fin du programme.")
+            break
         else:
             print("Fin du programme.")
 
