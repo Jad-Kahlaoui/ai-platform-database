@@ -482,3 +482,42 @@ def creerUtilisateur(conn):
         conn.rollback()
         print("Erreur SQL :", e)
 
+def afficherToutesLesEvaluations(conn):
+
+    print("\n--- LISTE DE TOUTES LES ÉVALUATIONS ---\n")
+
+    sql = """
+        SELECT
+            e.idResultat,
+            e.email,
+            r.nom AS modele,
+            e.note,
+            e.commentaire,
+            e.date
+        FROM Evaluation e
+        JOIN Resultat r
+            ON e.idResultat = r.idResultat
+        ORDER BY e.date DESC;
+    """
+
+    try:
+        with conn.cursor() as cur:
+            cur.execute(sql)
+            rows = cur.fetchall()
+
+            if not rows:
+                print("Aucune évaluation enregistrée.\n")
+                return
+
+            for id_res, email, modele, note, commentaire, date_eval in rows:
+                print(f"• ID Résultat : {id_res}")
+                print(f"  Utilisateur : {email}")
+                print(f"  Modèle : {modele}")
+                print(f"  Date : {date_eval}")
+                print(f"  Note : {note}/5")
+                print(f"  Commentaire : {commentaire if commentaire else 'Aucun'}\n")
+
+    except Exception as e:
+        conn.rollback()
+        print("Erreur SQL :", e)
+
