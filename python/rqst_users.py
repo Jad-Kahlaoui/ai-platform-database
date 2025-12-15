@@ -1,6 +1,6 @@
-def afficherMesEvaluations(conn, email_utilisateur):
+def mettreUneEvaluations(conn, email_utilisateur):
 
-    print(f"\n--- MES ÉVALUATIONS ({email_utilisateur}) ---\n")
+    print(f"\n--- METTRE UNE ÉVALUATION ({email_utilisateur}) ---\n")
 
     sql = """
         SELECT 
