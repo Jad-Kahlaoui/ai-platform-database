@@ -1,32 +1,48 @@
-def mettreUneEvaluations(conn, email_utilisateur):
-    print(f"\n--- METTRE UNE ÉVALUATION ({email_utilisateur}) ---\n")
-    sql = """
-        SELECT 
-            r.nom AS modele,
-            e.note,
-            e.commentaire,
-            e.date
-        FROM Evaluation e
-        JOIN Resultat r ON e.idResultat = r.idResultat
-        WHERE e.email = %s
-        ORDER BY e.date DESC;
+def ajouterEvaluation(conn, email_utilisateur):
     """
-
+    Permet à l'utilisateur connecté d'ajouter une évaluation en indiquant :
+    - l'id du résultat à évaluer
+    - la note (1 à 5)
+    - un commentaire
+    La date est automatiquement la date actuelle.
+    """
     try:
+        # Demander l'id du résultat
+        while True:
+            try:
+                id_resultat = int(input("Entrez l'ID du résultat à évaluer : "))
+                break
+            except ValueError:
+                print("Veuillez entrer un nombre entier valide pour l'ID.")
+
+        # Demander la note
+        while True:
+            try:
+                note = int(input("Entrez la note (1 à 5) : "))
+                if 1 <= note <= 5:
+                    break
+                else:
+                    print("La note doit être comprise entre 1 et 5.")
+            except ValueError:
+                print("Veuillez entrer un nombre entier valide pour la note.")
+
+        # Demander un commentaire
+        commentaire = input("Entrez votre commentaire : ").strip()
+
+        # Insertion dans la base
+        sql = """
+            INSERT INTO Evaluation (email, idResultat, date, note, commentaire)
+            VALUES (%s, %s, NOW(), %s, %s);
+        """
+
         with conn.cursor() as cur:
-            cur.execute(sql, (email_utilisateur,))
-            rows = cur.fetchall()
-            if not rows:
-                print("Aucune évaluation trouvée pour cet utilisateur.\n")
-                return
-            for modele, note, comm, date_eval in rows:
-                print(f"• Modèle évalué : {modele}")
-                print(f"  Date : {date_eval}")
-                print(f"  Note : {note}/5")
-                print(f"  Commentaire : {comm if comm else 'Aucun'}\n")
+            cur.execute(sql, (email_utilisateur, id_resultat, note, commentaire))
+            conn.commit()
+            print("Évaluation ajoutée avec succès !\n")
 
     except Exception as e:
         print("Erreur SQL :", e)
+
 
 
 def afficherMonHistorique(conn, email_utilisateur):
