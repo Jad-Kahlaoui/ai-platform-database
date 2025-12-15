@@ -1,4 +1,4 @@
-
+from datetime import date
 
 def dureeMoyenneGeneration(conn):
 
@@ -257,6 +257,8 @@ def suppUser(conn):
 
 
 # version J 
+from datetime import date
+
 def ajouterModele(conn):
 
     print("\n--- AJOUTER UN NOUVEAU MODELE ---\n")
@@ -265,7 +267,7 @@ def ajouterModele(conn):
     descript = input("Description du modèle : ").strip()
     dateCreation = date.today()
 
-    # Liste des types possibles
+    # Types autorisés
     types_modele = ["image", "texte", "video"]
 
     type_modele = input("Type de modèle (image / texte / video) : ").lower()
@@ -273,19 +275,38 @@ def ajouterModele(conn):
         print("Valeur invalide. Veuillez entrer : image, texte ou video.")
         type_modele = input("Type de modèle (image / texte / video) : ").lower()
 
+    # Initialisation (important : None → NULL en SQL)
+    longueur = None
+    resolution = None
+    duree = None
+
     try:
-        longueur = int(input("Longueur maximum de la saisie : "))
-        resolution = int(input("Résolution : "))
-        duree = int(input("Durée moyenne de génération (en secondes) : "))
+        if type_modele == "texte":
+            longueur = int(input("Longueur maximum (en mots) : "))
+            if longueur <= 0:
+                raise ValueError
+
+        elif type_modele == "image":
+            resolution = int(input("Résolution (en pixels) : "))
+            if resolution <= 0:
+                raise ValueError
+
+        elif type_modele == "video":
+            resolution = int(input("Résolution (en pixels) : "))
+            duree = int(input("Durée moyenne de génération (en secondes) : "))
+            if resolution <= 0 or duree <= 0:
+                raise ValueError
+
     except ValueError:
-        print("\nErreur : vous devez saisir des entiers.\n")
+        print("\nErreur : valeurs numériques invalides (doivent être strictement positives).\n")
         return
 
     try:
         with conn.cursor() as cur:
             sql = """
                 INSERT INTO Modele
-                (nom, description, dateCreation, TypeModele, longueurMax, resolution, duree)
+                (nom, description, dateCreation, TypeModele,
+                 longueurMax, resolution, duree)
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
             """
 
@@ -300,13 +321,11 @@ def ajouterModele(conn):
             ))
 
             conn.commit()
-
             print("\n>>> Modèle ajouté avec succès !\n")
 
     except Exception as e:
         conn.rollback()
         print("\nErreur SQL :", e)
-
 
 # choix Supprimer commentaire 
 def suppComment(conn):
@@ -393,3 +412,73 @@ def modifierStatutUser(conn):
     except Exception as e:
         conn.rollback()
         print("Erreur : ", e)
+
+        
+
+def creerUtilisateur(conn):
+
+    print("\n--- CRÉER UN NOUVEL UTILISATEUR ---\n")
+
+    email = input("Email : ").strip()
+    nom = input("Nom : ").strip()
+    mot_de_passe = input("Mot de passe : ").strip()
+    date_inscription = date.today()
+
+    # Type utilisateur
+    type_user = input("Type utilisateur (normal / premium) : ").lower()
+    while type_user not in ['normal', 'premium']:
+        type_user = input("Valeur invalide. Entrez 'normal' ou 'premium' : ").lower()
+
+    # Application stricte des règles métier
+    if type_user == 'premium':
+        qualite = input("Qualité de génération (moyenne / haute) : ").lower()
+        while qualite not in ['moyenne', 'haute']:
+            qualite = input("Valeur invalide. Choisir 'moyenne' ou 'haute' : ").lower()
+        hors_ligne = True
+    else:
+        qualite = 'moyenne'
+        hors_ligne = False
+
+    try:
+        with conn.cursor() as cur:
+
+            # Vérification d'existence
+            cur.execute(
+                "SELECT 1 FROM Utilisateur WHERE email = %s",
+                (email,)
+            )
+
+            if cur.fetchone():
+                print("\n Un utilisateur avec cet email existe déjà.\n")
+                return
+
+            # Insertion conforme au MLD
+            cur.execute("""
+                INSERT INTO Utilisateur
+                (email, nom, motDePasse, dateInscription,
+                 TypeUtilisateur, qualiteGeneration, horsLigneAutorise)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+            """, (
+                email,
+                nom,
+                mot_de_passe,
+                date_inscription,
+                type_user,
+                qualite,
+                hors_ligne
+            ))
+
+            conn.commit()
+
+            print("\n Utilisateur créé avec succès :")
+            print(f"  → Email : {email}")
+            print(f"  → Nom : {nom}")
+            print(f"  → Date d'inscription : {date_inscription}")
+            print(f"  → Type : {type_user}")
+            print(f"  → Qualité : {qualite}")
+            print(f"  → Hors-ligne : {hors_ligne}\n")
+
+    except Exception as e:
+        conn.rollback()
+        print("Erreur SQL :", e)
+
