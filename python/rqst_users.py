@@ -72,8 +72,8 @@ def afficherMonHistorique(conn, email_utilisateur):
 
 
 def afficherMesResultats(conn, email_utilisateur):
-
     print(f"\n--- MES RÉSULTATS GÉNÉRÉS ({email_utilisateur}) ---\n")
+    
     sql = """
         SELECT 
             r.nom AS modele,
@@ -86,7 +86,7 @@ def afficherMesResultats(conn, email_utilisateur):
         GROUP BY r.idResultat, r.nom, r.dateDebut
         ORDER BY r.dateDebut DESC;
     """
-
+    
     try:
         with conn.cursor() as cur:
             cur.execute(sql, (email_utilisateur,))
@@ -94,8 +94,9 @@ def afficherMesResultats(conn, email_utilisateur):
             if not rows:
                 print("Aucun résultat généré.\n")
                 return
-            for modele, date_deb, metas in rows:
+            for modele, date_deb, id_resultat, metas in rows:
                 print(f"• Modèle : {modele}")
+                print(f"  ID Résultat : {id_resultat}")
                 print(f"  Date : {date_deb}")
                 print(f"  Détails : {metas if metas else 'N/A'}\n")
     except Exception as e:
