@@ -41,6 +41,7 @@ def ajouterEvaluation(conn, email_utilisateur):
             print("Évaluation ajoutée avec succès !\n")
 
     except Exception as e:
+        conn.rollback()
         print("Erreur SQL :", e)
 
 
