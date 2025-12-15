@@ -32,8 +32,9 @@ def connexion(conn):
     # Cas ADMIN
     if email == ADMIN_EMAIL and password == ADMIN_PASSWORD:
         print("\nConnexion administrateur réussie.\n")
-        return "admin"
+        return ("admin", None)
 
+    
     # Cas UTILISATEUR NORMAL
     try:
         with conn.cursor() as cur:
@@ -46,7 +47,7 @@ def connexion(conn):
 
             if password == row[0]:
                 print(f"\nConnexion utilisateur réussie ({email}).\n")
-                return "user"
+                return ("user", email)
             else:
                 print("Mot de passe incorrect.")
                 return None
@@ -56,8 +57,13 @@ def connexion(conn):
 
 # Boucle de connexion
 role = None
+email_utilisateur = None
+
 while role is None:
-    role = connexion(conn)
+    result = connexion(conn)
+    if result:
+        role, email_utilisateur = result
+
 
 # Menu admin
 if role == "admin":
@@ -105,7 +111,7 @@ if role == "admin":
 # Menu utilisateur minimaliste
 elif role == "user":
     choice = '1'
-    while choice == '1':
+    while choice in [str(p) for p in range(1, 6)]:
         print("\n--- MENU UTILISATEUR ---")
         print("1 - Mettre une évaluation")
         print("2 - Afficher mon historique d'utilisation")
@@ -117,19 +123,17 @@ elif role == "user":
         choice = input()
 
         if choice == '1':
-            r.mettreUneEvaluations(conn)
+            r.mettreUneEvaluations(conn, email_utilisateur)
         elif choice == '2':
-            r.afficherMonHistorique(conn)
+            r.afficherMonHistorique(conn, email_utilisateur)
         elif choice == '3':
-            r.afficherMesResultats(conn)
+            r.afficherMesResultats(conn, email_utilisateur)
         elif choice == '4':
-            r.afficherMesCollaborations(conn)
+            r.afficherMesCollaborations(conn, email_utilisateur)
         elif choice == '5':
             r.afficherTousLesModeles(conn)
         else:
             print("Fin du programme.")
             break
-        else:
-            print("Fin du programme.")
 
 conn.close()
