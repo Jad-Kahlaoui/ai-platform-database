@@ -62,6 +62,7 @@ def afficherMesResultats(conn, email_utilisateur):
         SELECT 
             r.nom AS modele,
             r.dateDebut,
+            r.idResultat
             STRING_AGG(m.cle || ': ' || m.valeur, ', ') AS metadonnees
         FROM Resultat r
         LEFT JOIN MetaDonnee m ON r.idResultat = m.idResultat
