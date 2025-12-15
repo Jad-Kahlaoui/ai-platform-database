@@ -2,6 +2,8 @@
 
 import psycopg2
 import rqst as rq
+import getpass
+
 from datetime import date
 
 
@@ -11,6 +13,9 @@ PASSWORD = "EX8GdC5vmx9e"
 DATABASE = "dbnf18a016"
 
 
+# Constantes pour admin
+ADMIN_EMAIL = "admin"
+ADMIN_PASSWORD = "admin123
 conn = psycopg2.connect(
     "host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD)
 )
