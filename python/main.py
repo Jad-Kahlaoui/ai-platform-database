@@ -144,15 +144,3 @@ elif role == "user":
             break
 
 conn.close()
-            r.afficherMonHistorique(conn, email_utilisateur)
-        elif choice == '3':
-            r.afficherMesResultats(conn, email_utilisateur)
-        elif choice == '4':
-            r.afficherMesCollaborations(conn, email_utilisateur)
-        elif choice == '5':
-            r.afficherTousLesModeles(conn)
-        else:
-            print("Fin du programme.")
-            break
-
-conn.close()
