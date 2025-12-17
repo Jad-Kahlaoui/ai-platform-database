@@ -40,7 +40,7 @@ db.modeles.insertOne({
 ```
 db.modeles.insertOne({
   _id: "ModelevideoV1",
-  description: "Modèle de génération de texte",
+  description: "Modèle de génération d'une video",
   dateCreation: new Date("2025-11-20"),
   typeModele: "video",
   duree: 200
@@ -53,7 +53,7 @@ db.modeles.insertOne({
 ```
 db.modeles.insertOne({
   _id: "ModelevideoV1",
-  description: "Modèle de génération de texte",
+  description: "Modèle de génération d'image",
   dateCreation: new Date("2025-11-20"),
   typeModele: "image",
   Resolution: 1080
