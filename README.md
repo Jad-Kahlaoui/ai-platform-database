@@ -21,4 +21,4 @@
 
 
 
-L'IA a été en grande partie utilisé sur le projet afin de génerer des données pour les insertions dans les tables SQL afin de rendre possible le devoir sur les SELECT 
+L'IA a été en grande partie utilisé sur le projet afin de génerer des données pour les insertions dans les tables SQL afin de rendre possible le devoir sur les SELECT , L'IA a été aussi utile en complément du cours afin de rechercher certains aspects/commandes en Python ou en SQL.
