@@ -15,7 +15,7 @@
 | QUI | QUOI |
 | ------ | ------ |
 |   Jad     |  Application Python + NOSQL    |
-|    Enora    |        |
+|    Enora    |    NOSQL    |
 |    Romain    |    Normalisation 3NF    |
 |    Adrien    |    Aide a l'implémentation du menu Utilisateur de l'app Python    |
 
