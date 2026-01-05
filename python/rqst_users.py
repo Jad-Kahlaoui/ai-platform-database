@@ -1,10 +1,7 @@
 def ajouterEvaluation(conn, email_utilisateur):
     """
-    Permet à l'utilisateur connecté d'ajouter une évaluation en indiquant :
-    - l'id du résultat à évaluer
-    - la note (1 à 5)
-    - un commentaire
-    La date est automatiquement la date actuelle.
+
+    UNIQUEMENT s'il est le créateur du résultat.
     """
     try:
         # Demander l'id du résultat
@@ -14,6 +11,28 @@ def ajouterEvaluation(conn, email_utilisateur):
                 break
             except ValueError:
                 print("Veuillez entrer un nombre entier valide pour l'ID.")
+
+        with conn.cursor() as cur:
+            # Vérifier que le résultat existe et appartient à l'utilisateur
+            cur.execute(
+                """
+                SELECT email
+                FROM Resultat
+                WHERE idResultat = %s;
+                """,
+                (id_resultat,)
+            )
+            row = cur.fetchone()
+
+            if row is None:
+                print("Ce résultat n'existe pas.")
+                return
+
+            email_createur = row[0]
+
+            if email_createur != email_utilisateur:
+                print("Vous ne pouvez évaluer que vos propres résultats.")
+                return
 
         # Demander la note
         while True:
@@ -43,6 +62,7 @@ def ajouterEvaluation(conn, email_utilisateur):
     except Exception as e:
         conn.rollback()
         print("Erreur SQL :", e)
+
 
 
 
