@@ -2,11 +2,13 @@ A partir du MLD :
 
 
 Utilisateur
-Attributs : email (PK), nom, motDePasse, dateInscription, TypeUtilisateur, qualiteGeneration, horsLigneAutorise
+Attributs : email (PK), nom, motDePasse, dateInscription, TypeUtilisateur
 1NF : tous les attributs sont atomiques
 2NF : pas de dépendance partielle (clé simple)
 3NF : tous les attributs dépendent directement de la clé primaire, pas de dépendances transitives
-Dépendances fonctionnelles : email → nom, motDePasse, dateInscription, TypeUtilisateur, qualiteGeneration, horsLigneAutorise
+Dépendances fonctionnelles : email → nom, motDePasse, dateInscription, TypeUtilisateur
+
+
 
 Modele
 Attributs : nom (PK), description, dateCreation, TypeModele, longueurMax, resolution, duree
