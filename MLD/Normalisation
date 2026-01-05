@@ -8,6 +8,16 @@ Attributs : email (PK), nom, motDePasse, dateInscription, TypeUtilisateur
 3NF : tous les attributs dépendent directement de la clé primaire, pas de dépendances transitives
 Dépendances fonctionnelles : email → nom, motDePasse, dateInscription, TypeUtilisateur
 
+Avant modification email → nom, motDePasse, dateInscription, TypeUtilisateur
+et TypeUtilisateur → qualiteGeneration, horsLigneAutorise
+Après modification email → TypeUtilisateur
+
+Qualite
+Attributs: TypeUtilisateur (PK), qualiteGeneration, horsLigneAutorise
+1NF : tous les attributs sont atomiques
+2NF : pas de dépendance partielle (clé simple)
+3NF : tous les attributs dépendent directement de la clé primaire, pas de dépendances transitives
+Dépendances fonctionnelles : TypeUtilisateur → qualiteGeneration, horsLigneAutorise
 
 
 Modele
