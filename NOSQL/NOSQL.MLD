@@ -1,0 +1,63 @@
+
+
+Utilisateur(#email: TEXT, nom: TEXT, motDePasse: TEXT, dateInscription: DATE,TypeUtilisateur: TEXT, qualiteGeneration: TEXT, horsLigneAutorise: BOOL)
+Modele(#nom: TEXT, description: TEXT, dateCreation: DATE, TypeModele: TEXT ,longueurMax: INT, resolution: INT, duree: INT)
+DonneeEntrainement(#contenu: TEXT, typeDonnee: TEXT, dateAjout: DATE)
+EntrainementModele(#contenu => DonneeEntrainement, #nom => Modele)
+Resultat(#idResultat: INT, email => Utilisateur, nom => Modele, dateDebut: DATE, Metadonnee => JSON, Evaluation => JSON)
+Collaboration(#emailA => Utilisateur, #emailB => Utilisateur, #nom => Modele, dateDebut: DATE, dateFin: DATE)
+HistoriqueUtilisation(#email => Utilisateur, #nom => Modele, #date: DATE, typeInteraction: TEXT)
+
+
+
+ Contraintes Explicites  
+
+Table Utilisateur :
+
+Heritage de premium et Utilisateur par classe mère 
+CHECK (dateInscription <= CURRENT_DATE),
+CHECK (qualiteGeneration IN ('moyenne', 'haute')) 
+CHECK (TypeUtilisateur IN ('normal', 'premium'))
+horsLigneAutorise ne peut être TRUE que si TypeUtilisateur est premium et Un utilisateur premium ne peut avoir que TRUE sur horsLigneAutorise 
+qualiteGeneration 'haute' que si TypeUtilisateur est premium mais un Utilisateur premium aurait le droit d'avoir qualiteGeneration en moyenne ca serait son choix tandit que TypeUtilisateur normal est oblige d'avoir une qualiteGeneration moyenne
+
+Table Modele : 
+
+Duree est un INT en minutes , 
+Longueur Max est le nombre de token , 
+et resolution est en pixel de haut , 
+
+ Heritage de limiteImage et limiteVideo et limiteTexte sur Modele par classe mère 
+CHECK (TypeModele IN ('texte', 'image', 'video')),
+
+
+CHECK (
+
+  if(TypeModele = 'texte') (longueurMax IS NOT NULL AND resolution IS NULL AND duree IS NULL)
+
+  OR if(TypeModele = 'image') (resolution IS NOT NULL AND longueurMax IS NULL AND duree IS NULL)
+  
+  OR if(TypeModele = 'video') (duree IS NOT NULL AND longueurMax IS NULL AND resolution IS NULL)
+)
+
+CHECK (dateCreation <= CURRENT_DATE)
+
+
+Table DonneeEntrainement :
+
+CHECK (dateAjout <= CURRENT_DATE)
+CHECK (typeDonnee IN ('texte', 'image', 'video')) 
+
+ Table Resultat :
+
+CHECK (dateDebut <= CURRENT_DATE)
+
+Table Collaboration : 
+
+Collaboration.emailA =! Collaboration.emailB
+dateFin > dateDebut
+
+Table HistoriqueUtilisation :
+CHECK (typeInteraction IN ('generation', 'consultation', 'entrainement', 'evaluation')), 
+CHECK (date <= CURRENT_DATE)
+
