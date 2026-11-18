@@ -2,22 +2,16 @@
 
 ## Système d’IA générative (D1)
 
-### Membres : 
-* Kahlaoui Jad 
-* Lepage Enora
-* Masson Adrien
-* Chiem Romain 
-
 ### Créateur de  la BDD au serveur TUXA : nf18a016
 
 
 
-| QUI | QUOI |
-| ------ | ------ |
-|   Jad     |  Application Python + NOSQL    |
-|    Enora    |    NOSQL  + Application Python  |
-|    Romain    |    Normalisation 3NF + Aide au Python   |
-|    Adrien    |    Implémentation du menu Utilisateur de l'app Python    |
+
+
+|Application Python + NOSQL    |
+|NOSQL  + Application Python  |
+|Normalisation 3NF + Aide au Python   |
+|Implémentation du menu Utilisateur de l'app Python    |
 
 
 
